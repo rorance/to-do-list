@@ -1,11 +1,13 @@
 <table class="table">
   <tr>
-    <th>Title</th><th>Deadline</th><th>Priority</th><th>Tag</th>
+    <th>Done</th><th>Title</th><th>Deadline</th><th>Priority</th><th>Tag</th>
   </tr>
-  <tr *ngFor="let event of eventlist">
+  <tr id=undo *ngFor="let event of eventlist">
+    <td><input type="checkbox"></td>
     <td>{{event.eventname}}</td>
     <td>{{event.deadline}}</td>
     <td>{{priorityToString(event.priority)}}</td>
     <td>{{tagToString(event.tag)}}</td>
+    <td><button (click)=remove(event)>delete</button></td>
   </tr>
   </table>

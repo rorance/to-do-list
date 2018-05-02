@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+
 import { eventlist, } from '../model'
+import { EventService, eventlstforlook} from "../event.service"
+
 
 @Component({
   selector: 'app-main-layout',
@@ -8,12 +11,15 @@ import { eventlist, } from '../model'
 })
 export class MainLayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private eventSevice:EventService) { }
 
   ngOnInit() {
   }
-  
-  eventlist = eventlist
+  eventlist = eventlstforlook
+
+  remove(event){
+    this.eventSevice.remove(event);
+  }
 
   priorityToString(priority:number){
     switch(priority){

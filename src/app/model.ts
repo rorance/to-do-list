@@ -22,6 +22,12 @@ const eventEXP:Eventmodel={
     tag:1
 }
 
+const eventEXP2:Eventmodel={
+    eventname:"Java2",
+    priority:3,
+    tag:2
+}
+
 export const eventlist : Eventmodel [] = [
-    eventEXP,
+    eventEXP,eventEXP2,
 ]
