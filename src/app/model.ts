@@ -11,8 +11,17 @@ enum Tag {
 
 class Eventmodel {
     eventname:string
-    deadline:Date
+    deadline?:Date
     priority:priority
     tag:Tag
-} 
-export const eventlist : Eventmodel [] = []
+}
+
+const eventEXP:Eventmodel={
+    eventname:"Java",
+    priority:priority.important,
+    tag:1
+}
+
+export const eventlist : Eventmodel [] = [
+    eventEXP,
+]

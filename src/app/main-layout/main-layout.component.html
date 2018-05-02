@@ -1,3 +1,11 @@
-<p>
-  main-layout works!
-</p>
+<table class="table">
+  <tr>
+    <th>Title</th><th>Deadline</th><th>Priority</th><th>Tag</th>
+  </tr>
+  <tr *ngFor="let event of eventlist">
+    <td>{{event.eventname}}</td>
+    <td>{{event.deadline}}</td>
+    <td>{{priorityToString(event.priority)}}</td>
+    <td>{{tagToString(event.tag)}}</td>
+  </tr>
+  </table>
