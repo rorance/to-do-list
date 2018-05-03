@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { EventService } from '../event.service'
+
+
 @Component({
   selector: 'app-addevent',
   templateUrl: './addevent.component.html',
@@ -7,12 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddeventComponent implements OnInit {
 
-  constructor() { }
+  constructor(private eventService:EventService) { }
 
   ngOnInit() {
   }
-  remove(){
-    document.getElementById("")
+  title:string
+  deadline:Date
+  priority:number
+  tag:number
+  addevent(){
+    this.eventService.addevent(this.title,this.deadline,this.priority,this.tag)
   }
 
 }

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { eventlist, } from '../model'
 import { EventService, eventlstforlook} from "../event.service"
 
-
+let done=false
 @Component({
   selector: 'app-main-layout',
   templateUrl: './main-layout.component.html',
@@ -11,15 +11,21 @@ import { EventService, eventlstforlook} from "../event.service"
 })
 export class MainLayoutComponent implements OnInit {
 
-  constructor(private eventSevice:EventService) { }
+  constructor(private eventService:EventService) { }
 
   ngOnInit() {
   }
   eventlist = eventlstforlook
 
   remove(event){
-    this.eventSevice.remove(event);
+    this.eventService.remove(event)
   }
+
+  done(event){
+    this.eventService.done(event)
+  }
+
+ finish="finish"
 
   priorityToString(priority:number){
     switch(priority){
