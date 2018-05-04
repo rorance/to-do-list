@@ -15,6 +15,7 @@ export class EventService {
     eventlstforlook=eventlist
     }
   }
+
   priorityToEnum(i:number){
     switch(i){
       case 1:return priority.important
@@ -22,6 +23,7 @@ export class EventService {
       case 3:return priority.later
     }
   }
+
   tagToEnum(j:number){
     switch(j){
       case 1:return Tag.work

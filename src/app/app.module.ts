@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { AddeventComponent } from './addevent/addevent.component';
 import { EventService } from "./event.service";
+import { searchPipe, sortPipe } from './pipe.pipe';
 
 
 
@@ -13,7 +14,9 @@ import { EventService } from "./event.service";
   declarations: [
     AppComponent,
     MainLayoutComponent,
-    AddeventComponent
+    AddeventComponent,
+    searchPipe,
+    sortPipe
   ],
   imports: [
     BrowserModule,

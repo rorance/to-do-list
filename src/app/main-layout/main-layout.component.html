@@ -2,10 +2,10 @@
   <tr>
     <th>Title</th><th>Deadline</th><th>Priority</th><th>Tag</th>
   </tr>
-    <tr id=undo *ngFor="let event of eventlist" >
+    <tr id=undo *ngFor="let event of (eventlist|searchPipe:search)|sortPipe:order" >
       <ng-container *ngIf="event.undo===true">
         <td>{{event.eventname}}</td>
-        <td>{{event.deadline}}</td>
+        <td>{{event.deadline|date:'short'}}</td>
         <td>{{priorityToString(event.priority)}}</td>
         <td>{{tagToString(event.tag)}}</td>
         <td><button (click)=remove(event)>delete</button></td>
@@ -22,4 +22,10 @@
       </ng-container>
     </tr>
   </table>
+  <input id=search type="text" [(ngModel)]="search" />
   <app-addevent></app-addevent>
+<button (click)='sort("priority","ASC")'>idのASC</button>  <!-- イベント発火ポイント  -->
+<button (click)='sort("priority","DESC")'>idのDESC</button>
+<button (click)='sort("deadline","ASC")'>nameのASC</button>
+<button (click)='sort("deadline","DESC")'>nameのDESC</button>
+

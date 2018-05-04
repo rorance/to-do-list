@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { eventlist, } from '../model'
-import { EventService, eventlstforlook} from "../event.service"
+import { EventService, eventlstforlook } from "../event.service"
+import { OrderByParam } from '../pipe.pipe';
 
-let done=false
 @Component({
   selector: 'app-main-layout',
   templateUrl: './main-layout.component.html',
@@ -15,8 +15,9 @@ export class MainLayoutComponent implements OnInit {
 
   ngOnInit() {
   }
+  
   eventlist = eventlstforlook
-
+  order = new OrderByParam()
   remove(event){
     this.eventService.remove(event)
   }
@@ -25,7 +26,7 @@ export class MainLayoutComponent implements OnInit {
     this.eventService.done(event)
   }
 
- finish="finish"
+  search=""
 
   priorityToString(priority:number){
     switch(priority){
@@ -39,6 +40,9 @@ export class MainLayoutComponent implements OnInit {
       case 1 : return "work"
       case 2 : return "play"
     }
+  }
+  sort(column: string, orderBy: string) {  // ←イベント発火地点
+    this.order.set(column, orderBy);  // ←ソートを行う
   }
 
 }
