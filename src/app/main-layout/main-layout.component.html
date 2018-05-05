@@ -28,18 +28,6 @@ Search:<input id=search type="text" [(ngModel)]="search" />
           </div>
           </ng-container>
       </div>
-    
-
-    <!-- <tr id=did class="eventdone" *ngFor="let event of eventlist" >
-      <ng-container  *ngIf="event.undo===false">
-        <td>{{event.eventname}}</td>
-        <td>{{event.deadline}}</td>
-        <td>{{priorityToString(event.priority)}}</td>
-        <td>{{tagToString(event.tag)}}</td>
-        <td><button (click)=remove(event)>delete</button></td>
-      </ng-container>
-    </tr>
-  </table> -->
 </div>
 <div class="toolbar">
   <app-addevent></app-addevent>
