@@ -3,16 +3,26 @@ Search:<input id=search type="text" [(ngModel)]="search" />
 <button (click)='sort("priority","ASC")'>priority優先</button>
 <button (click)='sort("deadline","ASC")'>Deadline優先</button>
 <div class="todopanel">
-    <div id=undo *ngFor="let event of (eventlist|searchPipe:search)|sortPipe:order" >
+    <div *ngFor="let event of (eventlist|searchPipe:search)|sortPipe:order" >
       <ng-container *ngIf="event.undo===true">
         <div class="postit">
-        <span>Title:{{event.eventname}}</span><br>
-        <span>Deadline:</span><br>
-        <span>{{event.deadline|date:'short'}}</span><br>
-        <span>Priority:{{priorityToString(event.priority)}}</span><br>
+          <span *ngIf="!event.edit">Title:{{event.eventname}}</span>
+          <span *ngIf="event.edit">
+            <input type="text" [(ngModel)]="event.eventname">
+          </span>
+          <br>
+          <span>Deadline:</span><br>
+          <span *ngIf="!event.edit">{{event.deadline|date:'short'}}</span>
+          <span *ngIf="event.edit">
+            <input type="datetime-local" [(ngModel)]="event.deadline">
+          </span><br>
+          <span>Priority:{{priorityToString(event.priority)}}</span><br>
+          
         <span>Tag:{{tagToString(event.tag)}}</span><br>
         <span><button (click)=remove(event)>delete</button></span>
-        <span><button (click)=done(event)>done</button></span>
+        <span><button (click)=done(event)>done</button></span><br>
+        <span><button *ngIf="!event.edit" (click)="event.edit=true">edit</button></span>
+        <span><button *ngIf="event.edit" (click)="event.edit=false">enter</button></span>
       </div>
       </ng-container>
     </div>

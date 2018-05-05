@@ -1,7 +1,7 @@
 .postit{
-    height: 150px;
-    width: 150px;
-    font-size: 16px;
+    height: 200px;
+    width: 200px;
+    font-size: 20px;
     margin: 5px;
     padding: 10px;
     background-color: yellowgreen;
@@ -11,9 +11,9 @@
 }
 
 .postitdone{
-    height: 150px;
-    width: 150px;
-    font-size: 16px;
+    height: 200px;
+    width: 200px;
+    font-size: 20px;
     margin: 5px;
     padding: 10px;
     background-color: rgba(68, 129, 68, 0.5);

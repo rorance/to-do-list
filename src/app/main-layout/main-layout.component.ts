@@ -18,6 +18,8 @@ export class MainLayoutComponent implements OnInit {
   
   eventlist = eventlstforlook
   order = new OrderByParam()
+  edit=false
+
   remove(event){
     this.eventService.remove(event)
   }

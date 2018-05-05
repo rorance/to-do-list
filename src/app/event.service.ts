@@ -7,7 +7,19 @@ export let eventlstforlook=eventlist
 
 export class EventService {
 
-  constructor() { }
+  constructor() { 
+  }
+  
+  getTodos(): Eventmodel []{
+    let localStorageItem = JSON.parse(localStorage.getItem('todos'))
+    return localStorage == null ? [] : localStorageItem.todos
+  }
+
+  setLocalStorageEventList(todos:Eventmodel[]){
+    localStorage.setItem('todos',JSON.stringify({ todos:todos }))
+  }
+
+
   remove(event){
     const index = eventlist.indexOf(event, 0);
     if (index > -1) {
@@ -32,6 +44,7 @@ export class EventService {
   }
 
   addevent(title:string,deadline:Date,priority,tag){
+    let todos = this.getTodos
     const newPriority=+priority
     const newTag=+tag
     const newEvent:Eventmodel={

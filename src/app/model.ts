@@ -31,6 +31,6 @@ const eventEXP2:Eventmodel={
     undo:true
 }
 
-export const eventlist : Eventmodel [] = [
+export let eventlist : Eventmodel [] = [
     eventEXP,eventEXP2,
 ]
