@@ -1,3 +1,4 @@
+<div class="toolbar">
 <span>title:<input id=title  [(ngModel)]="title" ></span>
 <span>deadline:<input type="datetime-local" id=deadline [(ngModel)]="deadline"></span>
 <span>priority:
@@ -6,11 +7,12 @@
     <option value=2 >normal</option>
     <option value=3 >later</option>
   </select>
-</span>
+</span><br>
 <span>tag:
   <select id=tag [(ngModel)]="tag">
     <option value=1 [selected]="isSelected">work</option>
     <option value=2 >play</option>
   </select>
-</span>
+</span><br>
 <span><button (click)=addevent()>add</button></span>
+</div>

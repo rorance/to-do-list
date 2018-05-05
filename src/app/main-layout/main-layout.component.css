@@ -1,3 +1,41 @@
-.eventdone{
+.postit{
+    height: 150px;
+    width: 150px;
+    font-size: 16px;
+    margin: 5px;
+    padding: 10px;
+    background-color: yellowgreen;
+    letter-spacing: 1px; 
+    font-weight: 500;
+    float: left;
+}
+
+.postitdone{
+    height: 150px;
+    width: 150px;
+    font-size: 16px;
+    margin: 5px;
+    padding: 10px;
+    background-color: rgba(68, 129, 68, 0.5);
+    letter-spacing: 1px; 
+    font-weight: 500;
+    float: left;
     text-decoration:line-through;
+}
+
+.todopanel{
+height: 660px;
+width: 1080px;
+float: left;
+}
+
+.toolbar{
+    height: 250px;
+    width: 250px;
+    float:left;
+}
+
+body{
+    height: 660px;
+    width:1330px;
 }

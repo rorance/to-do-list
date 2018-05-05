@@ -1,18 +1,36 @@
-<table class="table">
-  <tr>
-    <th>Title</th><th>Deadline</th><th>Priority</th><th>Tag</th>
-  </tr>
-    <tr id=undo *ngFor="let event of (eventlist|searchPipe:search)|sortPipe:order" >
+<body>
+Search:<input id=search type="text" [(ngModel)]="search" />
+<button (click)='sort("priority","ASC")'>priority優先</button>
+<button (click)='sort("deadline","ASC")'>Deadline優先</button>
+<div class="todopanel">
+    <div id=undo *ngFor="let event of (eventlist|searchPipe:search)|sortPipe:order" >
       <ng-container *ngIf="event.undo===true">
-        <td>{{event.eventname}}</td>
-        <td>{{event.deadline|date:'short'}}</td>
-        <td>{{priorityToString(event.priority)}}</td>
-        <td>{{tagToString(event.tag)}}</td>
-        <td><button (click)=remove(event)>delete</button></td>
-        <td><button (click)=done(event)>done</button></td>
+        <div class="postit">
+        <span>Title:{{event.eventname}}</span><br>
+        <span>Deadline:</span><br>
+        <span>{{event.deadline|date:'short'}}</span><br>
+        <span>Priority:{{priorityToString(event.priority)}}</span><br>
+        <span>Tag:{{tagToString(event.tag)}}</span><br>
+        <span><button (click)=remove(event)>delete</button></span>
+        <span><button (click)=done(event)>done</button></span>
+      </div>
       </ng-container>
-    </tr>
-    <tr id=did class="eventdone" *ngFor="let event of eventlist" >
+    </div>
+      <div id=did *ngFor="let event of (eventlist|searchPipe:search)" >
+          <ng-container *ngIf="event.undo===false">
+            <div class="postitdone">
+            <span>Title:{{event.eventname}}</span><br>
+            <span>Deadline:</span><br>
+            <span>{{event.deadline|date:'short'}}</span><br>
+            <span>Priority:{{priorityToString(event.priority)}}</span><br>
+            <span>Tag:{{tagToString(event.tag)}}</span><br>
+            <span><button (click)=remove(event)>delete</button></span>
+          </div>
+          </ng-container>
+      </div>
+    
+
+    <!-- <tr id=did class="eventdone" *ngFor="let event of eventlist" >
       <ng-container  *ngIf="event.undo===false">
         <td>{{event.eventname}}</td>
         <td>{{event.deadline}}</td>
@@ -21,11 +39,9 @@
         <td><button (click)=remove(event)>delete</button></td>
       </ng-container>
     </tr>
-  </table>
-  <input id=search type="text" [(ngModel)]="search" />
+  </table> -->
+</div>
+<div class="toolbar">
   <app-addevent></app-addevent>
-<button (click)='sort("priority","ASC")'>idのASC</button>  <!-- イベント発火ポイント  -->
-<button (click)='sort("priority","DESC")'>idのDESC</button>
-<button (click)='sort("deadline","ASC")'>nameのASC</button>
-<button (click)='sort("deadline","DESC")'>nameのDESC</button>
-
+</div>
+</body>
