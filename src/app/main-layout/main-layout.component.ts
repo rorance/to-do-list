@@ -5,8 +5,9 @@ import { EventService, eventlstforlook } from "../event.service"
 import { OrderByParam } from '../pipe.pipe';
 
 @Component({
+  moduleId:module.id,
   selector: 'app-main-layout',
-  templateUrl: './main-layout.component.html',
+  templateUrl: 'main-layout.component.html',
   styleUrls: ['./main-layout.component.css']
 })
 export class MainLayoutComponent implements OnInit {

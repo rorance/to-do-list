@@ -7,6 +7,7 @@ import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { AddeventComponent } from './addevent/addevent.component';
 import { EventService } from "./event.service";
 import { searchPipe, sortPipe } from './pipe.pipe';
+import { AppRoutingModule } from './route';
 
 
 
@@ -16,11 +17,12 @@ import { searchPipe, sortPipe } from './pipe.pipe';
     MainLayoutComponent,
     AddeventComponent,
     searchPipe,
-    sortPipe
+    sortPipe,
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [EventService],
   bootstrap: [AppComponent]
