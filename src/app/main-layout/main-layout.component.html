@@ -17,14 +17,13 @@ Search:<input id=search type="text" [(ngModel)]="search" />
             <input type="datetime-local" [(ngModel)]="event.deadline">
           </span><br>
           <span>Priority:{{priorityToString(event.priority)}}</span><br>
-          
         <span>Tag:{{tagToString(event.tag)}}</span><br>
         <span><button (click)=remove(event)>delete</button></span>
         <span><button (click)=done(event)>done</button></span><br>
         <span><button *ngIf="!event.edit" (click)="event.edit=true">edit</button></span>
         <span><button *ngIf="event.edit" (click)="event.edit=false">enter</button></span>
       </div>
-      </ng-container>
+    </ng-container>
     </div>
       <div id=did *ngFor="let event of (eventlist|searchPipe:search)" >
           <ng-container *ngIf="event.undo===false">
