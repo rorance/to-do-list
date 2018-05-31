@@ -1,13 +1,13 @@
 # ![image1](logo.png)
 ## TypeScript とは
-### 1. TypeScriptはJavaScriptのスーパーセットである
+#### 1. TypeScriptはJavaScriptのスーパーセットである
 ![image2](typejava.png)  
 既存のJavaScriptプログラムは、全て有効なTypeScriptプログラムとなる
-### 2. 静的型付けとクラスベースオブジェクト指向
-### 3. TypeScriptは大規模なアプリケーションの開発のために設計されている
-### 4. オープンソース
-### 5. JavaScriptにコンパイルされる
-### 6. TypeScriptでは変数の宣言時にデータ型を指定できる
+#### 2. 静的型付けとクラスベースオブジェクト指向
+#### 3. TypeScriptは大規模なアプリケーションの開発のために設計されている
+#### 4. オープンソース
+#### 5. JavaScriptにコンパイルされる
+#### 6. TypeScriptでは変数の宣言時にデータ型を指定できる
 
 ## Hello World
 
@@ -33,7 +33,47 @@ string: データ型
 従来の JavaScript での変数宣言には var キーワードが使われてきました。
 
 ```TypeScript
-var x = 0
+function f() {
+  var x = 1;
+  console.log(x);
+  {
+    var x = 2;
+    console.log(x);
+  }
+  console.log(x);
+}
+f()
+// 1
+// 2
+// 2
+```
+
+### Let
+
+Letを使った場合、ブロックレベルで変数のスコープが定義される
+
+```TypeScript
+function f() {
+  let x = 1;
+  console.log(x);
+  {
+    let x = 2;
+    console.log(x);
+  }
+  console.log(x);
+}
+f()
+// 1
+// 2
+// 1
+```
+
+### const
+read only
+
+```TypeScript
+const x: string = 'const'
+x = 'change' // error
 ```
 
 ## 基本の型
@@ -135,7 +175,6 @@ var Color;
 var sky = Color.blue;
 // sky = 3
 alert(sky);
-
 ```
 
 上記の例は red が 1 として初期化されている数値 enum となります。  
@@ -333,7 +372,70 @@ i8とbrandを区切る「.」に注目してほしい。「.」はクラスの�
 「new」も演算子の1つであり、クラスのインスタンスを作成し、その参照を返す働きを持っている。  
 「+」という演算子が使われているが、これは最初に見たような数値の加算ではなく、文字列を連結するという働きを持つ。
 
-### 4. 演算子の結合方向
+### 4. 二項演算子 +
+
+#### string + number = string
+
+```TypeScript
+const a: string = '12'
+const b: number = 34
+const c = a + b
+alert(c) // 1234
+alert(typeof c) // string
+window.close()
+```
+[Playground](http://www.typescriptlang.org/play/#src=const%20a%3A%20string%20%3D%20'12'%3B%0D%0Aconst%20b%3A%20number%20%3D%2034%3B%0D%0Aconst%20c%20%3D%20a%20%2B%20b%3B%0D%0Aalert(c)%3B%0D%0Aalert(typeof%20c)%3B%0D%0Awindow.close()%3B) でコンパイル
+
+#### string + boolean = string
+
+```TypeScript
+const a: string = '12'
+const b: boolean = true
+const c = a + b
+alert(c) // 12true
+alert(typeof c) // string
+window.close()
+```
+[Playgroud](http://www.typescriptlang.org/play/#src=const%20a%3A%20string%20%3D%20'12'%3B%0D%0Aconst%20b%3A%20boolean%20%3D%20true%3B%0D%0Aconst%20c%20%3D%20a%20%2B%20b%3B%0D%0Aalert(c)%3B%0D%0Aalert(typeof%20c)%3B%0D%0Awindow.close()%3B) でコンパイル
+
+### 5. 比較演算子
+<,>,<=,>=,==,!=,===,!==
+
+```TypeScript
+const a: number = 12
+const b: string = '12'
+const c: any = '12'
+const d: any = 34
+
+console.log(a > d) // false
+console.log(a !== b) // compile error
+console.log(a !== c) // true
+console.log(b === c) // true
+```
+
+比較演算子の落とし穴
+
+```TypeScript
+18 <= x < 25 //誤った例
+18 <= x && x < 25 //正しい書き方
+```
+
+複数の条件を調べたいときには、論理積を求める「&&」演算子や論理和を求める「||」演算子を使う。
+
+### 6. 代入演算子
+```TypeScript
+let a, b, c, d: number
+a = 1
+b = 2
+c = 4
+d = 8
+
+console.log(a += b) // a = a + b
+console.log(c /= b) // c = c / b
+console.log(b *= d) // b = b * d
+```
+
+### 7. 演算子の結合方向
 
 例えば、代入演算子の「=」や「+=」は「←（右から左）」となっているので、右から左に向かって演算が実行される。
 
@@ -352,7 +454,7 @@ b = b + 2
 b += 2
 ```
 
-### 5. インクリメントとデクリメント
+### 8. インクリメントとデクリメント
 
 #### ①前置型インクリメント演算子
 
@@ -375,16 +477,7 @@ alert(b) //16
 
 **後置型**ー変数の値は増やされるが、返される値は元の値
 
-### 6. 比較演算子
-
-```TypeScript
-18 <= x < 25 //誤った例
-18 <= x && x < 25 //正しい書き方
-```
-
-複数の条件を調べたいときには、論理積を求める「&&」演算子や論理和を求める「||」演算子を使う。
-
-### 7. 特殊演算子
+### 9. 特殊演算子
 
 #### ①typeof
 変数の型がチェックできる
@@ -435,8 +528,8 @@ else {
 変数の値によって異なる文を実行する。1つの変数の値を調べて多分岐させるときに便利
 
 ```TypeScript
-var fortune: string
-var n: number
+let fortune: string
+let n: number
 n = Math.floor(Math.random() * 7)
 switch (n) {
   case 0:
@@ -509,7 +602,7 @@ window.close()
 ### 2. do...while文
 式の値がtrueである間、文を繰り返し実行する。  
 式の値を毎回の繰り返しの後に判定する（後判断型while）  
-同じサイコロの例です。
+同じサイコロの例。
 
 ```TypeScript
 let count: number = 0
@@ -538,7 +631,7 @@ window.close()
 ```TypeScript
 let a = 0
 for (let i = 1; i < 10; i++){
-	a += i
+	a += i // a = 1+2+3+...+9
 }
 alert(a) // 45
 ```
@@ -557,12 +650,12 @@ class Smartphone {
 	camera:string
 	screenSize:string
 }
-var i:Smartphone = new Smartphone();
+const i:Smartphone = new Smartphone();
 i.name = 'iPhone8'
 i.camera = '1200Mpx'
 i.screenSize = '4.7"'
 document.body.innerHTML = 'スマホ仕様<br/>'
-for (var x in i) {
+for (const x in i) {
     document.body.innerHTML += x + ':' + i[x] + '<br/>'
 }
 ```
@@ -593,4 +686,263 @@ console.log(carBrandList[2]) // BMW
 
 ### 配列内容の追加と削除
 
+```TypeScript
+let carBrandList: string[] = new Array()
+carBrandList = ['Audi', 'Benz', 'BMW', 'Lexus']
 
+carBrandList.splice(3) // carBrandList[3]を削除
+
+carBrandList.push("Volks") // Volksを配列の最後尾に追加
+
+console.log(carBrandList);
+
+for (let brand of carBrandList) {
+	console.log(brand);
+}
+
+console.log(carBrandList[2]);
+```
+[Playground](http://www.typescriptlang.org/play/#src=let%20carBrandList%3A%20string%5B%5D%20%3D%20new%20Array()%3B%0D%0AcarBrandList%20%3D%20%5B'Audi'%2C%20'Benz'%2C%20'BMW'%2C%20'Lexus'%5D%3B%0D%0A%0D%0AcarBrandList.splice(3)%3B%0D%0A%0D%0AcarBrandList.push(%22Volks%22)%3B%0D%0A%0D%0Aconsole.log(carBrandList)%3B%0D%0A%0D%0Afor%20(let%20brand%20of%20carBrandList)%20%7B%0D%0A%09console.log(brand)%3B%0D%0A%7D%0D%0A%0D%0Aconsole.log(carBrandList%5B2%5D)%3B) でコンパイル
+
+### 配列と繰り返し処理
+
+```TypeScript
+const board: number[] = new Array( 10 )
+let temp, r1, r2: number
+for ( let i = 0; i < 10; i++ ) {
+	board[i] = i+1
+}
+for ( let count = 0; count < 50; count++ ) {
+	r1 = Math.floor( Math.random() * 10 )
+	r2 = Math.floor( Math.random() * 10 )
+	temp = board[r1]
+	board[r1] = board[r2]
+	board[r2] = temp
+}
+alert( board )
+```
+[Playground](http://www.typescriptlang.org/play/#src=const%20board%3A%20number%5B%5D%20%3D%20new%20Array(%2010%20)%3B%0D%0Alet%20temp%2C%20r1%2C%20r2%3A%20number%3B%0D%0Afor%20(%20let%20i%20%3D%200%3B%20i%20%3C%2010%3B%20i%2B%2B%20)%20%7B%0D%0A%09board%5Bi%5D%20%3D%20i%2B1%3B%0D%0A%7D%0D%0Afor%20(%20let%20count%20%3D%200%3B%20count%20%3C%2050%3B%20count%2B%2B%20)%20%7B%0D%0A%09r1%20%3D%20Math.floor(Math.random()%20*%2010)%3B%0D%0A%09r2%20%3D%20Math.floor(Math.random()%20*%2010)%3B%0D%0A%09temp%20%3D%20board%5Br1%5D%3B%0D%0A%09board%5Br1%5D%20%3D%20board%5Br2%5D%3B%0D%0A%09board%5Br2%5D%20%3D%20temp%3B%0D%0A%7D%0D%0Aalert(%20board%20)%3B) でコンパイル
+
+## 関数
+### 関数とは
+
+関数とはひとまとまりの処理を記述して名前を付けたもの。  
+関数の名前を指定し、必要に応じて値を与えてやれば、処理が実行され、結果が返される。  
+日常の例えでいえば、小麦粉や卵などの材料を入れるだけでお菓子を作ってくれる機械のようなイメージだ。
+
+![image11](function.png)
+
+### 関数の基本的な考え方
+
+関数とは、引数を与えれば、戻り値を返してくれるひとまとまりの処理のこと。  
+「関数」の中で何が行われているかが分からなくても、値を与えてやるだけで結果が得られる。
+
+![image12](function2.png)
+
+### 関数の大きな利点は、以下の2点である。
+
+1. 一度関数を書いておけば、内部でどういう処理をしているかを詳しく知らなくても利用できる  
+2. 必要な箇所で何度でも利用できる
+
+### 簡単な関数の書き方
+
+```TypeScript
+function add2(x: number, y: number): number {
+	return x + y
+}
+// 関数を定義
+const answer: number = add2(19, 37) // 関数を呼び出す
+alert(answer) // 56
+window.close()
+```
+[Playground](http://www.typescriptlang.org/play/#src=function%20add2(x%3A%20number%2C%20y%3A%20number)%3A%20number%20%7B%0D%0A%09return%20x%20%2B%20y%3B%0D%0A%7D%0D%0Aconst%20answer%3A%20number%20%3D%20add2(19%2C%2037)%3B%0D%0Aalert(answer)%3B%0D%0Awindow.close()%3B) でコンパイル  
+
+### 関数の書き方
+![image13](function3.png)
+
+変数answerを使わず、関数add2をalertメソッドの引数に直接指定してもよい
+
+```TypeScript
+const answer: number = add2(10, 20); 
+alert(answer);
+↓
+alert(add2(10, 20));
+```
+
+### 関数オブジェクトを参照する変数のデータ型を確認する
+![image14](function4.png)  
+
+関数オブジェクトを参照する変数は、関数の引数の並びとそれらのデータ型、戻り値のデータ型によって型が決まる。
+
+### アロー関数式を使う
+「(引数のリスト) : 戻り値の型 => { 関数の処理 };」のような形式で書く
+
+```TypeScript
+const mul2 = (a: number, b: number): number => {
+  return a*b
+}
+alert(mul2(8,7)) // 56
+```
+
+[Playground](http://www.typescriptlang.org/play/#src=const%20mul2%20%3D%20(a%3A%20number%2C%20b%3A%20number)%3A%20number%20%3D%3E%20%7B%0D%0A%09return%20a%20*%20b%3B%0D%0A%7D%0D%0Aalert(mul2(8%2C%207))%3B) でコンパイル
+
+戻り値が簡単な式の場合は、さらに簡略化できる。  
+「=>」の後に、戻り値を直接書けばよい。上の例をさらに書き換えてみよう。
+
+```TypeScript
+const mul2 = (a: number, b: number): number => a * b
+
+alert(mul2(8, 7))
+```
+
+### 一つの関数で複数の戻り値を返す方法
+戻り値にオブジェクトを指定すれば、複数の値をまとめて返せる。  
+以下は金額の割引と税込みを計算する例。
+
+```TypeScript
+function total(x: number, y: number) {
+	const a = x * y // xは値段 yは割引
+	const b = a * 1.08 // 税込みを計算
+	return { price: a, taxin: b }
+}
+
+const iPhone8 = total(100000, 0.95)
+alert('Price= ' + iPhone8.price + 'Tax in= ' + iPhone8.taxin)
+// Price= 95000 Tax in= 102600
+```
+[Playground](http://www.typescriptlang.org/play/#src=function%20total(x%3A%20number%2C%20y%3A%20number)%20%7B%0D%0A%09const%20a%20%3D%20x%20*%20y%3B%0D%0A%09const%20b%20%3D%20a%20*%201.08%3B%0D%0A%09return%20%7B%20price%3A%20a%2C%20taxin%3A%20b%20%7D%3B%0D%0A%7D%0D%0A%0D%0Aconst%20iPhone8%20%3D%20total(100000%2C%200.95)%3B%0D%0Aalert('Price%3D%20'%20%2B%20iPhone8.price%20%2B%20'Tax%20in%3D%20'%20%2B%20iPhone8.taxin)%3B) でコンパイル
+
+### 関数の応用例
+
+簡単なメモlistを作成してみよう
+
+```TypeScript
+const txt = document.createElement('input'); // input スペースを宣言
+const btn = document.createElement('button'); // ボタンを宣言
+const memo = document.createElement('textarea'); // textareaを宣言
+const list: string[] = new Array();
+btn.textContent = '押して';
+btn.onclick = function () {
+	if(txt.value!=''){
+		alert(txt.value + 'を追加した');
+		list.push(txt.value);
+		txt.value = '';
+		memo.value = list.toString();
+	}
+	else {
+		alert("メモを入力してください")
+	}
+};
+document.body.appendChild(txt); // inputスペースを画面で表示
+document.body.appendChild(btn); // ボタンを画面で表示
+document.body.appendChild(memo); // textareaを画面で表示
+```
+
+### オプションの引数
+
+関数を定義するときには、仮引数としてオプションの引数が指定できる。  
+簡単な例で見てみよう。単価（price）と数量（amount）を基に、金額を求める関数があるものとする。  
+ただし、メンバーランク（rank）が指定されている場合は、それだけ割り引くこととしよう。  
+つまり、メンバーランクは省略可能というわけだ。
+
+```TypeScript
+function calCost(price: number, amount: number, rank?: string) {
+  if (rank) { // もしランクが入力せれてったら
+    switch (rank) {
+      case 'diamond':return price * amount *0.7
+      case 'gold': return price * amount * 0.75
+      case 'silver': return price * amount * 0.9
+      default: return price * amount
+    }
+
+  }	
+  else {
+    return price * amount
+	}
+}
+
+alert(calCost(100, 3)) // 300
+alert(calCost(9527, 1, 'diamond')) // 6668.9
+alert(calCost(10000, 10, 'platina')) // platinaというランクはないので、100000
+window.close()
+```
+[Playground](http://www.typescriptlang.org/play/#src=function%20calCost(price%3A%20number%2C%20amount%3A%20number%2C%20rank%3F%3A%20string)%20%7B%0D%0A%09if%20(rank)%20%7B%0D%0A%09%09switch%20(rank)%20%7B%0D%0A%09%09%09case%20'diamond'%3A%20return%20price%20*%20amount%20*%200.7%3B%0D%0A%09%09%09case%20'gold'%3A%20return%20price%20*%20amount%20*%200.75%3B%0D%0A%09%09%09case%20'silver'%3A%20return%20price%20*%20amount%20*%200.9%3B%0D%0A%09%09%09default%3A%20return%20price%20*%20amount%3B%0D%0A%09%09%7D%0D%0A%09%09%0D%0A%09%7D%09%0D%0A%09else%20%7B%0D%0A%09%09return%20price%20*%20amount%3B%0D%0A%09%7D%0D%0A%7D%0D%0A%0D%0Aalert(calCost(100%2C%203))%3B%0D%0Aalert(calCost(9527%2C%201%2C%20'diamond'))%3B%0D%0Aalert(calCost(10000%2C%2010%2C%20'platina'))%3B%0D%0Awindow.close()%3B) でコンパイル
+
+ifの式はこう書くもよい
+```TypeScript
+if(rank!=undefined)
+```
+
+### 引数の既定値を設定する
+省略可能な引数には既定値が設定できる。
+
+```TypeScript
+function circle(r: number, pi = 3.14) {
+  const x = 2 * pi * r
+  const y = pi * r * r
+  return { perimeter: x, area: y }
+}
+const newCircle = circle(4)
+alert('perimeter = ' + newCircle.perimeter + 'area = ' + newCircle.area)
+```
+[Playground](http://www.typescriptlang.org/play/#src=function%20circle(r%3A%20number%2C%20pi%20%3D%203.14)%20%7B%0D%0A%09const%20x%20%3D%202%20*%20pi%20*%20r%3B%0D%0A%09const%20y%20%3D%20pi%20*%20r%20*%20r%3B%0D%0A%09return%20%7B%20perimeter%3A%20x%2C%20area%3A%20y%20%7D%3B%0D%0A%7D%0D%0Aconst%20newCircle%20%3D%20circle(4)%3B%0D%0Aalert('perimeter%20%3D%20'%20%2B%20newCircle.perimeter%20%2B%20'area%20%3D%20'%20%2B%20newCircle.area)%3B) でコンパイル
+
+### 関数のオーバーロード
+オーバーロードとは、同じ名前を持ち、異なる引数リストや戻り値の型を持つ複数の関数を定義すること
+
+```TypeScript
+function getProfile(x: number): string
+function getProfile(x: string): string
+function getProfile(x: any): string {
+  if (typeof (x) == "string") {
+    return x + 'のメンバー番号：1234'
+     else {
+    return "田中のメンバー番号は" + x
+  }
+}
+alert(getProfile(1234)) //田中のメンバー番号は1234
+alert(getProfile('田中')) //田中のメンバー番号：1234
+window.close();
+```
+
+[Playground](http://www.typescriptlang.org/play/#src=function%20getLength(x%3A%20number)%3A%20number%3B%0Afunction%20getLength(x%3A%20string)%3A%20number%3B%0Afunction%20getLength(x%3A%20any)%3A%20number%20%7B%0A%09if%20(typeof%20(x)%20%3D%3D%20%22string%22)%20%7B%0A%09%09return%20x.length%0A%09%7D%20else%20%7B%0A%09%09if%20(x%20%3D%3D%200)%20return%201%3B%0A%09%09return%20Math.floor(Math.log(x)%20%2F%20Math.LN10)%20%2B%201%3B%0A%09%7D%0A%7D%0Aalert(getLength(123))%3B%0Awindow.close()%3B) でコンパイル
+
+### ジェネリックス
+ジェネリックスとは、データ型を仮に決めておき、  
+実際に使用するデータ型を呼び出し時に変えられるようにする機能で、総称型とも呼ばれる。  
+ジェネリックスを利用すると、データ型を関数の呼び出し時に決められる
+
+```TypeScript
+function parrot<T>(data: T): T {
+  let ret: T
+  ret = data
+  return ret
+}
+alert(parrot<number>(100)) // 100
+alert(parrot<string>('Hello World')) // Hello World
+alert(parrot<string>(123)) // データ型が合わないのでこれはエラーとなる
+window.close();
+```
+[Playground](http://www.typescriptlang.org/play/#src=function%20parrot%3CT%3E(data%3A%20T)%3A%20T%20%7B%0A%09let%20ret%3A%20T%3B%0A%09ret%20%3D%20data%3B%0A%09return%20ret%3B%0A%7D%0Aalert(parrot%3Cnumber%3E(100))%3B%0Aalert(parrot%3Cstring%3E('Hello%20World'))%3B%0Aalert(parrot%3Cstring%3E(123))%3B%0Awindow.close()%3B) でコンパイル
+
+### クロージャー
+
+クロージャーとは、関数が定義された環境にある変数を利用できる機能
+
+```TypeScript
+function getSerialNumber() {
+  let origin = 0
+  function countUp(delta: number): number {
+    return origin += delta
+  }
+  return countUp
+};
+const inside = getSerialNumber()
+alert(inside(2)) // 2
+alert(inside(3)) // 5
+alert(inside(-2)) // 3
+window.close()
+```
+[Playground](http://www.typescriptlang.org/play/#src=function%20getSerialNumber()%20%7B%0A%09var%20origin%20%3D%200%3B%0A%09function%20countUp(delta%3A%20number)%3A%20number%20%7B%0A%09%09return%20origin%20%2B%3D%20delta%3B%0A%09%7D%0A%09return%20countUp%3B%0A%7D%3B%0Avar%20inside%20%3D%20getSerialNumber()%3B%0Aalert(inside(2))%3B%0Aalert(inside(3))%3B%0Aalert(inside(-2))%3B%0Awindow.close()%3B) でコンパイル
+
+## クラス
