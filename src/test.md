@@ -34,13 +34,13 @@ string: データ型
 
 ```TypeScript
 function f() {
-  var x = 1;
-  console.log(x);
+  var x = 1
+  console.log(x)
   {
-    var x = 2;
-    console.log(x);
+    var x = 2
+    console.log(x)
   }
-  console.log(x);
+  console.log(x)
 }
 f()
 // 1
@@ -54,13 +54,13 @@ Letを使った場合、ブロックレベルで変数のスコープが定義�
 
 ```TypeScript
 function f() {
-  let x = 1;
-  console.log(x);
+  let x = 1
+  console.log(x)
   {
-    let x = 2;
-    console.log(x);
+    let x = 2
+    console.log(x)
   }
-  console.log(x);
+  console.log(x)
 }
 f()
 // 1
@@ -213,19 +213,19 @@ const year = now.getFullYear()
 console.log('今日は' + year + '年')
 const month = now.getMonth() +1
 // new Date の第 2 引数でも、Date.prototype.getMonth でも、月は 0-11で表すので、ここは+1。
-console.log('今日は' + month + '月');
-const date = now.getDate();
-console.log('今日は' + date + '日');
-const day = now.getDay();
-console.log('今日は' + day + '曜日');
-const today = now.toDateString();
-console.log(today);
+console.log('今日は' + month + '月')
+const date = now.getDate()
+console.log('今日は' + date + '日')
+const day = now.getDay()
+console.log('今日は' + day + '曜日')
+const today = now.toDateString()
+console.log(today)
 // 曜日 月 日 年 並び 例：Wed May 30 2018
-const today2 = now.toJSON().slice(0, 10);
-console.log(today2);
+const today2 = now.toJSON().slice(0, 10)
+console.log(today2)
 //yyyy-MM-dd 並び 例：2018-5-30
-
 ```
+
 [Playground](http://www.typescriptlang.org/play/#src=const%20now%20%3D%20new%20Date()%3B%0D%0Aconst%20hour%20%3D%20now.getHours()%3B%0D%0Aconsole.log('%E4%BB%8A%E3%81%AF'%20%2B%20hour%20%2B%20'%E6%99%82')%3B%0D%0Aconst%20minute%20%3D%20now.getMinutes()%3B%0D%0Aconsole.log('%E4%BB%8A%E3%81%AF'%20%2B%20minute%20%2B%20'%E5%88%86')%3B%0D%0Aconst%20second%20%3D%20now.getSeconds()%3B%0D%0Aconsole.log('%E4%BB%8A%E3%81%AF'%20%2B%20second%20%2B%20'%E7%A7%92')%3B%0D%0Aconst%20year%20%3D%20now.getFullYear()%3B%0D%0Aconsole.log('%E4%BB%8A%E6%97%A5%E3%81%AF'%20%2B%20year%20%2B%20'%E5%B9%B4')%3B%0D%0Aconst%20month%20%3D%20now.getMonth()%20%2B1%20%3B%0D%0Aconsole.log('%E4%BB%8A%E6%97%A5%E3%81%AF'%20%2B%20month%20%2B%20'%E6%9C%88')%3B%0D%0Aconst%20date%20%3D%20now.getDate()%3B%0D%0Aconsole.log('%E4%BB%8A%E6%97%A5%E3%81%AF'%20%2B%20date%20%2B%20'%E6%97%A5')%3B%0D%0Aconst%20day%20%3D%20now.getDay()%3B%0D%0Aconsole.log('%E4%BB%8A%E6%97%A5%E3%81%AF'%20%2B%20day%20%2B%20'%E6%9B%9C%E6%97%A5')%3B%0D%0Aconst%20today%20%3D%20now.toDateString()%3B%0D%0Aconsole.log(today)%3B%0D%0Aconst%20today2%20%3D%20now.toJSON().slice(0%2C%2010)%3B%0D%0Aconsole.log(today2)%3B%0D%0A) でコンパイル
 
 ### 7. Any
@@ -273,7 +273,7 @@ Void は型がないことを表すもので、値を返さない関数の戻り
 
 ```TypeScript
 function warnUser(): void {
-    alert("This is my warning message")
+    alert('This is my warning message')
 }
 ```
 
@@ -288,8 +288,8 @@ const unusable: void = undefined
 Null 型と Undefined 型にはそれぞれの値しか代入できません。
 
 ```TypeScript
-const u: undefined = undefined;
-const n: null = null;
+const u: undefined = undefined
+const n: null = null
 ```
 
 ## 式と演算
@@ -319,7 +319,6 @@ const a = !0
 alert(a) // true
 const b = !!0
 alert(b) //false
-
 ```
 
 #### ②理論演算子 &&
@@ -549,7 +548,7 @@ switch (n) {
   default:
     fortune = '大凶'
 }
-alert(n + ":" + fortune);
+alert(n + ':' + fortune);
 ```
 [Playground](http://www.typescriptlang.org/play/#src=let%20fortune%3A%20string%3B%0Alet%20n%3A%20number%3B%0An%20%3D%20Math.floor(Math.random()%20*%207)%3B%20%0Aswitch%20(n)%20%7B%0A%09case%200%3A%0A%09case%201%3A%0A%09%09fortune%20%3D%20'%E5%A4%A7%E5%90%89'%3B%0A%09%09break%3B%0A%09case%202%3A%0A%09%09fortune%20%3D%20'%E4%B8%AD%E5%90%89'%3B%0A%09%09break%3B%0A%09case%203%3A%0A%09case%204%3A%0A%09%09fortune%20%3D%20'%E5%B0%8F%E5%90%89'%3B%0A%09%09break%3B%0A%09case%205%3A%0A%09%09fortune%20%3D%20'%E5%87%B6'%3B%0A%09%09break%3B%0A%09default%3A%0A%09%09fortune%20%3D%20'%E5%A4%A7%E5%87%B6'%3B%0A%7D%0Aalert(n%20%2B%20'%3A'%2B%20fortune)%3B) でコンパイル
 
@@ -567,10 +566,10 @@ alert(n + ":" + fortune);
 
 ```TypeScript
 const score = 59
-const pass: string = (score >= 60 ? "合格" : "不合格")
+const pass: string = (score >= 60 ? '合格' : '不合格')
 alert(pass) // 不合格
 ```
-[Playground](http://www.typescriptlang.org/play/#src=const%20score%20%3D%2059%3B%0D%0Aconst%20pass%3A%20string%20%3D%20(score%20%3E%3D%2060%20%3F%20%22%E5%90%88%E6%A0%BC%22%20%3A%20%22%E4%B8%8D%E5%90%88%E6%A0%BC%22)%3B%0D%0Aalert(pass)%3B) でコンパイル
+[Playground](http://www.typescriptlang.org/play/#src=const%20score%20%3D%2059%3B%0D%0Aconst%20pass%3A%20string%20%3D%20(score%20%3E%3D%2060%20%3F%20'%E5%90%88%E6%A0%BC'%20%3A%20'%E4%B8%8D%E5%90%88%E6%A0%BC')%3B%0D%0Aalert(pass)%3B) でコンパイル
 
 ## 繰り返し処理
 条件を満たしている間、同じ文を繰り返して実行したり、一定の回数だけ文を繰り返し実行したりする
@@ -692,7 +691,7 @@ carBrandList = ['Audi', 'Benz', 'BMW', 'Lexus']
 
 carBrandList.splice(3) // carBrandList[3]を削除
 
-carBrandList.push("Volks") // Volksを配列の最後尾に追加
+carBrandList.push('Volks') // Volksを配列の最後尾に追加
 
 console.log(carBrandList);
 
@@ -702,7 +701,7 @@ for (let brand of carBrandList) {
 
 console.log(carBrandList[2]);
 ```
-[Playground](http://www.typescriptlang.org/play/#src=let%20carBrandList%3A%20string%5B%5D%20%3D%20new%20Array()%3B%0D%0AcarBrandList%20%3D%20%5B'Audi'%2C%20'Benz'%2C%20'BMW'%2C%20'Lexus'%5D%3B%0D%0A%0D%0AcarBrandList.splice(3)%3B%0D%0A%0D%0AcarBrandList.push(%22Volks%22)%3B%0D%0A%0D%0Aconsole.log(carBrandList)%3B%0D%0A%0D%0Afor%20(let%20brand%20of%20carBrandList)%20%7B%0D%0A%09console.log(brand)%3B%0D%0A%7D%0D%0A%0D%0Aconsole.log(carBrandList%5B2%5D)%3B) でコンパイル
+[Playground](http://www.typescriptlang.org/play/#src=let%20carBrandList%3A%20string%5B%5D%20%3D%20new%20Array()%3BcarBrandList%20%3D%20%5B'Audi'%2C%20'Benz'%2C%20'BMW'%2C%20'Lexus'%5D%3BcarBrandList.splice(3)%3BcarBrandList.push('Volks')%3Bconsole.log(carBrandList)%3Bfor%20(let%20brand%20of%20carBrandList)%20%7Bconsole.log(brand)%3B%7Dconsole.log(carBrandList%5B2%5D)%3B) でコンパイル
 
 ### 配列と繰り返し処理
 
@@ -894,7 +893,7 @@ alert('perimeter = ' + newCircle.perimeter + 'area = ' + newCircle.area)
 function getProfile(x: number): string
 function getProfile(x: string): string
 function getProfile(x: any): string {
-  if (typeof (x) == "string") {
+  if (typeof (x) == 'string') {
     return x + 'のメンバー番号：1234'
      else {
     return "田中のメンバー番号は" + x
@@ -905,7 +904,7 @@ alert(getProfile('田中')) //田中のメンバー番号：1234
 window.close();
 ```
 
-[Playground](http://www.typescriptlang.org/play/#src=function%20getLength(x%3A%20number)%3A%20number%3B%0Afunction%20getLength(x%3A%20string)%3A%20number%3B%0Afunction%20getLength(x%3A%20any)%3A%20number%20%7B%0A%09if%20(typeof%20(x)%20%3D%3D%20%22string%22)%20%7B%0A%09%09return%20x.length%0A%09%7D%20else%20%7B%0A%09%09if%20(x%20%3D%3D%200)%20return%201%3B%0A%09%09return%20Math.floor(Math.log(x)%20%2F%20Math.LN10)%20%2B%201%3B%0A%09%7D%0A%7D%0Aalert(getLength(123))%3B%0Awindow.close()%3B) でコンパイル
+[Playground](http://www.typescriptlang.org/play/#src=function%20getLength(x%3A%20number)%3A%20number%3Bfunction%20getLength(x%3A%20string)%3A%20number%3Bfunction%20getLength(x%3A%20any)%3A%20number%20%7Bif%20(typeof%20(x)%20%3D%3D%20'string')%20%7Breturn%20x.length%7D%20else%20%7Bif%20(x%20%3D%3D%200)%20return%201%3Breturn%20Math.floor(Math.log(x)%20%2F%20Math.LN10)%20%2B%201%3B%7D%7Dalert(getLength(123))%3Bwindow.close()%3B) でコンパイル
 
 ### ジェネリックス
 ジェネリックスとは、データ型を仮に決めておき、  
@@ -1116,39 +1115,137 @@ class Cat {
   weight: number
   name: string
   constructor() {
-    this.name = "名なし"
+    this.name = '名なし'
   }
 }
 
 const myCat = new Cat()
-alert("名前は" + myCat.name + "です") // 名前は名なしです
+alert('名前は' + myCat.name + 'です') // 名前は名なしです
 window.close()
 ```
-[Playground](http://www.typescriptlang.org/play/#src=class%20Cat%20%7B%0D%0A%20%20%20%20length%3A%20number%3B%0D%0A%20%20%20%20weight%3A%20number%3B%0D%0A%20%20%20%20name%3A%20string%3B%0D%0A%20%20constructor()%20%7B%0D%0A%20%20%20%20%20%20this.name%20%3D%20%22%E5%90%8D%E3%81%AA%E3%81%97%22%3B%0D%0A%20%20%7D%0D%0A%7D%0D%0A%0D%0Aconst%20myCat%20%3D%20new%20Cat()%3B%0D%0Aalert(%22%E5%90%8D%E5%89%8D%E3%81%AF%22%20%2B%20myCat.name%20%2B%20%22%E3%81%A7%E3%81%99%22)%3B%0D%0Awindow.close()%3B) でコンパイル
+[Playground](http://www.typescriptlang.org/play/#src=class%20Cat%20%7B%0A%09length%3A%20number%3B%0A%09weight%3A%20number%3B%0A%09name%3A%20string%3B%0A%20%20constructor()%20%7B%0A%09%20%20this.name%20%3D%20'%E5%90%8D%E3%81%AA%E3%81%97'%3B%0A%20%20%7D%0A%7D%0A%0Aconst%20myCat%20%3D%20new%20Cat()%3B%0Aalert('%E5%90%8D%E5%89%8D%E3%81%AF'%20%2B%20myCat.name%20%2B%20'%E3%81%A7%E3%81%99')%3B%20%0Awindow.close()%3B) でコンパイル
 
 ### コンストラクターのオーバーロード
 
 ```TypeScript
 class Cat {
-	length: number
-	weight: number
-	name: string
-	constructor()
-	constructor(s: string)
-	constructor(s?: string) {
-		if (typeof (s) == "string") {
-			this.name = s
-		} else {
-			this.name = "名なし"
-		}
+  length: number
+  weight: number
+  name: string
+  constructor()
+  constructor(s: string)
+  constructor(s?: string) {
+    if (typeof (s) == 'string') {
+      this.name = s
+    } else {
+      this.name = '名なし'
+    }
+  }
+}
+
+var myCat = new Cat('タマ')
+var yourCat = new Cat()
+alert('私の猫の名前は' + myCat.name + '\nあなたの猫の名前は' + yourCat.name + 'です')
+window.close()
+```
+[Playground](http://www.typescriptlang.org/play/#src=class%20Cat%20%7B%0A%09length%3A%20number%3B%0A%09weight%3A%20number%3B%0A%09name%3A%20string%3B%0A%09constructor()%3B%0A%09constructor(s%3A%20string)%3B%0A%09constructor(s%3F%3A%20string)%20%7B%0A%09%09if%20(typeof%20(s)%20%3D%3D%20'string')%20%7B%0A%09%09%09this.name%20%3D%20s%3B%0A%20%20%20%20%09%7D%20else%20%7B%0A%09%09%09this.name%20%3D%20'%E5%90%8D%E3%81%AA%E3%81%97'%3B%0A%09%09%7D%0A%09%7D%0A%7D%0A%0Avar%20myCat%20%3D%20new%20Cat(%22%E3%82%BF%E3%83%9E%22)%3B%0Avar%20yourCat%20%3D%20new%20Cat()%3B%0Aalert('%E7%A7%81%E3%81%AE%E7%8C%AB%E3%81%AE%E5%90%8D%E5%89%8D%E3%81%AF'%20%2B%20myCat.name%20%2B%20'%5Cn%E3%81%82%E3%81%AA%E3%81%9F%E3%81%AE%E7%8C%AB%E3%81%AE%E5%90%8D%E5%89%8D%E3%81%AF'%20%2B%20yourCat.name%20%2B%20'%E3%81%A7%E3%81%99')%3B%0Awindow.close()%3B) でコンパイル
+### 情報の隠蔽
+プライベート（private）なメンバー（ここではnameプロパティ）はクラス外からはアクセスできないが、  
+パブリック（public）なメンバー（ここではsetName／getNameメソッド）  
+はクラスの外からでもアクセスできる。  
+ここでは名前を8文字に制限することにしよう。  
+そのためには、nameプロパティをクラス外から自由にアクセスできないようにして、  
+長さのチェック機能を持ったメソッドを使ってのみアクセスできるようにすればよい。
+
+![image18](class4.png)
+
+**重要な情報をプライベートな変数にして、クラスの外から勝手に変更されないようにすることを「情報の隠蔽」と呼ぶ。**
+
+```TypeScript
+class Cat {
+	private name: string
+	public setName(s: string) {
+		this.name = s.slice(0, 8)
+	}
+	public getName(): string {
+		return this.name
 	}
 }
 
-var myCat = new Cat("タマ")
-var yourCat = new Cat()
-alert("私の猫の名前は" + myCat.name + "\nあなたの猫の名前は" + yourCat.name + "です")
+const myCat = new Cat()
+myCat.setName('アームストロングサイクロンジェットアームストロング砲');
+alert('私の猫の名前は' + myCat.getName() + 'です');
+window.close();
+```
+[Playground](http://www.typescriptlang.org/play/#src=class%20Cat%20%7B%0D%0A%20%20%20%20private%20name%3A%20string%3B%0D%0A%09public%20setName(s%3A%20string)%20%7B%0D%0A%20%20%20%20%20%20%20%20this.name%20%3D%20s.slice(0%2C%208)%3B%0D%0A%09%7D%0D%0A%09public%20getName()%3A%20string%20%7B%0D%0A%20%20%20%20%20%20%20%20return%20this.name%3B%0D%0A%09%7D%0D%0A%7D%0D%0A%0D%0Aconst%20myCat%20%3D%20new%20Cat()%3B%0D%0AmyCat.setName('%E3%82%A2%E3%83%BC%E3%83%A0%E3%82%B9%E3%83%88%E3%83%AD%E3%83%B3%E3%82%B0%E3%82%B5%E3%82%A4%E3%82%AF%E3%83%AD%E3%83%B3%E3%82%B8%E3%82%A7%E3%83%83%E3%83%88%E3%82%A2%E3%83%BC%E3%83%A0%E3%82%B9%E3%83%88%E3%83%AD%E3%83%B3%E3%82%B0%E7%A0%B2')%3B%0D%0Aalert('%E7%A7%81%E3%81%AE%E7%8C%AB%E3%81%AE%E5%90%8D%E5%89%8D%E3%81%AF'%20%2B%20myCat.getName()%20%2B%20'%E3%81%A7%E3%81%99')%3B%0D%0Awindow.close()%3B) でコンパイル
+
+setNameメソッドを使ってnameプロパティに値を設定できる。  
+ただし、長い文字列を指定しても、最初の8文字だけが使われることになる。  
+getNameメソッドを使って値を取り出せる。  
+**変数の宣言やメソッドの定義の前に何も書かなかった場合には、publicが指定されたものと見なされる。**
+
+### クラスの継承とメソッドのオーバーライド
+継承とは、元のクラス（親クラス）の機能を全て受け継いだ新しいクラス（子クラス）を定義すること。  
+クラスを継承するには、新しいクラスの名前の後にextendsというキーワードを書き、  
+その後に親クラスの名前を書けばよい。  
+親クラスのメソッドを子クラスで定義し直すことを、オーバーライドと呼ぶ。
+
+```TypeScript
+class Cat {
+  private name: string
+  public setName(s: string) {
+    this.name = s.slice(0, 8) 
+    }
+  public getName(): string {
+  return this.name
+  }
+  public meow(): string {
+    return 'にゃーん'
+  }
+}
+
+class Tiger extends Cat {
+  public meow(): string {
+    return 'がおー'
+  }
+}
+
+var myTiger = new Tiger()
+myTiger.setName('とらお')
+alert('私の虎の名前は' + myTiger.getName() + 'で、' + myTiger.meow() + 'と鳴きます')
 window.close()
 ```
 
-### 情報の隠蔽
+[Playground](http://www.typescriptlang.org/play/#src=class%20Cat%20%7B%0A%09private%20name%3A%20string%3B%0A%09public%20setName(s%3A%20string)%20%7B%0A%09%09this.name%20%3D%20s.slice(0%2C%208)%3B%0A%09%7D%0A%09public%20getName()%3A%20string%20%7B%0A%09%09return%20this.name%3B%0A%09%7D%0A%09public%20meow()%3A%20string%20%7B%0A%09%09return%20'%E3%81%AB%E3%82%83%E3%83%BC%E3%82%93'%3B%0A%09%7D%0A%7D%0A%0Aclass%20Tiger%20extends%20Cat%20%7B%0A%09public%20meow()%3A%20string%20%7B%0A%09%09return%20'%E3%81%8C%E3%81%8A%E3%83%BC'%3B%0A%09%7D%0A%7D%0A%0Avar%20myTiger%20%3D%20new%20Tiger()%3B%0AmyTiger.setName('%E3%81%A8%E3%82%89%E3%81%8A')%3B%0Aalert('%E7%A7%81%E3%81%AE%E8%99%8E%E3%81%AE%E5%90%8D%E5%89%8D%E3%81%AF'%20%2B%20myTiger.getName()%20%2B%20'%E3%81%A7%E3%80%81'%20%2B%20myTiger.meow()%20%2B%20'%E3%81%A8%E9%B3%B4%E3%81%8D%E3%81%BE%E3%81%99')%3B%0Awindow.close()%3B) でコンパイル
 
+親クラスのメソッドを呼び出したいときには、メソッド名の前にsuperを付ければよい。
+
+```TypeScript
+class Cat {
+	private name: string
+	public setName(s: string) {
+		this.name = s.slice(0, 8)
+	}
+	public getName(): string {
+		return this.name
+	}
+	public meow(): string {
+		return 'にゃーん'
+	}
+}
+
+class Tiger extends Cat {
+	public meow(): string {
+		return 'がおー'
+	}
+	public meowlikecat(): string {
+		return super.meow()
+	}
+}
+
+var myTiger = new Tiger()
+myTiger.setName('とらお')
+alert('私の虎の名前は' + myTiger.getName() + 'ですが、甘えているときには' + myTiger.meowlikecat() + 'と鳴きます')
+window.close()
+```
+[Playground](http://www.typescriptlang.org/play/#src=class%20Cat%20%7B%0A%09private%20name%3A%20string%3B%0A%09public%20setName(s%3A%20string)%20%7B%0A%09%09this.name%20%3D%20s.slice(0%2C%208)%3B%0A%09%7D%0A%09public%20getName()%3A%20string%20%7B%0A%09%09return%20this.name%3B%0A%09%7D%0A%09public%20meow()%3A%20string%20%7B%0A%09%09return%20%22%E3%81%AB%E3%82%83%E3%83%BC%E3%82%93%22%3B%0A%09%7D%0A%7D%0A%0Aclass%20Tiger%20extends%20Cat%20%7B%0A%09public%20meow()%3A%20string%20%7B%0A%09%09return%20%22%E3%81%8C%E3%81%8A%E3%83%BC%22%3B%0A%09%7D%0A%09public%20meowlikecat()%3A%20string%20%7B%0A%09%09return%20super.meow()%3B%0A%09%7D%0A%7D%0A%0Avar%20myTiger%20%3D%20new%20Tiger()%3B%0AmyTiger.setName(%22%E3%81%A8%E3%82%89%E3%81%8A%22)%3B%0Aalert(%22%E7%A7%81%E3%81%AE%E8%99%8E%E3%81%AE%E5%90%8D%E5%89%8D%E3%81%AF%22%20%2B%20myTiger.getName()%20%2B%20%22%E3%81%A7%E3%81%99%E3%81%8C%E3%80%81%E7%94%98%E3%81%88%E3%81%A6%E3%81%84%E3%82%8B%E3%81%A8%E3%81%8D%E3%81%AB%E3%81%AF%22%20%2B%20myTiger.meowlikecat()%20%2B%20%22%E3%81%A8%E9%B3%B4%E3%81%8D%E3%81%BE%E3%81%99%22)%3B%0Awindow.close()%3B) でコンパイル
