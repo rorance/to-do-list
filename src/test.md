@@ -946,3 +946,209 @@ window.close()
 [Playground](http://www.typescriptlang.org/play/#src=function%20getSerialNumber()%20%7B%0A%09var%20origin%20%3D%200%3B%0A%09function%20countUp(delta%3A%20number)%3A%20number%20%7B%0A%09%09return%20origin%20%2B%3D%20delta%3B%0A%09%7D%0A%09return%20countUp%3B%0A%7D%3B%0Avar%20inside%20%3D%20getSerialNumber()%3B%0Aalert(inside(2))%3B%0Aalert(inside(3))%3B%0Aalert(inside(-2))%3B%0Awindow.close()%3B) でコンパイル
 
 ## クラス
+### 変数とオブジェクト
+クラスを紹介する前、まず変数とオブジェクトを紹介する。  
+例えば、一匹の猫を表したいとき、基本は体長と体重が必要  
+
+```TypeScript
+let length: number
+let weight: number
+```
+猫の体長と体重を表す変数を宣言した。だが、これではひと目見ただけでは猫には見えない。
+
+#### 変数とオブジェクトのイメージ
+![image15](class.png)  
+左の図のようにばらばらに変数が宣言されていると、まるで猫っぽくないが、  
+右の図のように猫の属性（体長や体重）をまとめてやれば、  
+現実の猫を目的に合わせてそのまま表現できる。  
+
+ある目的に従っていくつかの変数や関数をまとめたものを、  
+単なる変数と区別してオブジェクトと呼ぶ。
+
+```TypeScript
+const nyCat = new Object()
+myCat.length = 45 //cm
+myCat.weight = 4 //Kg
+```
+このコードを見れば、変数だけを使っていた場合に比べて、これは猫だ、ということが確かに分かりやすい。  
+しかし、変数myCatが参照しているのは、汎用的に使われるObject型のオブジェクトであり、  
+他のオブジェクトと区別せずに使うこともできてしまう。
+
+### クラスを定義するには
+TypeScriptでは、より厳密、かつ柔軟にオブジェクトが取り扱えるようになっている。  
+そのために使われるのがクラスである。クラスとは、個々のオブジェクトではなく、  
+オブジェクトのひな型とでもいうべきものである。
+
+猫の例でいえば、「猫クラス」とは「一般的な猫」つまり、「猫ってこういうものだよ」という記述と考えていい。  
+それに対して、個々の猫は猫クラスを基に作る。その個々のオブジェクトはインスタンス（実体）と呼ばれる。  
+簡単にまとめると以下の図のようになる。  
+![image16](class2.png)
+
+#### クラスを使って猫を表す
+
+```TypeScript
+class Cat{
+  length: number
+  weight: number
+}
+```
+クラスの中に含まれる変数はプロパティと呼ばれ、関数はメソッドと呼ばれる。  
+プロパティとメソッドを合わせてクラスのメンバーと呼ぶ。
+
+### クラスからインスタンスを作成する
+クラスは、いわばひな型のようなものなので、実際のデータを取り扱うにはインスタンスを作成する必要がある。  
+インスタンスとは「実体」とでもいうべきものである。  
+**インスタンスの作成にはnew演算子を使う**。クラスの定義も併せて書いておこう。
+
+```TypeScript
+class Cat{
+  length: number
+  weight: number
+}
+cosnt myCat = new cat
+```
+
+newの後に「クラス名()」と書けば新しいインスタンスが作成できる。  
+インスタンスの参照が返されるのでそれを変数myCatに代入する。  
+従って、変数myCatを利用すれば、作成したインスタンスが利用できる。
+
+![image17](class3.png)
+
+#### インスタンス作成のイメージ
+（1）new演算子を使って、クラスを基にインスタンスを作る。new演算子は作成されたインスタンスの参照を返す。  
+（2）インスタンスの参照を変数myCatに代入する。それにより、myCatを利用すればCatクラスのインスタンスが利用できるようになる。
+
+### クラスのメンバーを利用する
+
+**「.」で区切ってメンバーを書けば、クラスのメンバーが利用できる。**
+
+```TypeScript
+class Cat{
+  name:string 
+  length: number
+　weight: number
+}
+
+const myCat = new Cat()
+myCat.name = 'mimi'
+myCat.length = 45 //cm
+myCat.weight = 4 //kg
+alert(myCat.name + 'の体長は' + myCat.length + '体重は' + myCat.weight)
+window.close()
+```
+[Playground](http://www.typescriptlang.org/play/#src=class%20Cat%7B%0A%20%20%20%20name%3A%20string%3B%0A%20%20%20%20length%3A%20number%3B%0A%20%20%20%20weight%3A%20number%3B%0A%7D%0A%0Aconst%20myCat%20%3D%20new%20Cat()%3B%0AmyCat.name%20%3D%20'mimi'%3B%0AmyCat.length%20%3D%2045%3B%0AmyCat.weight%20%3D%204%3B%0Aalert(myCat.name%20%2B%20'%E3%81%AE%E4%BD%93%E9%95%B7%E3%81%AF'%20%2B%20myCat.length%20%2B%20'%20cm'%20%2B%20'%20%2C%E4%BD%93%E9%87%8D%E3%81%AF'%20%2B%20myCat.weight%20%2B%20'%20Kg')%3B%0Awindow.close()%3B) でコンパイル
+
+### クラスのメンバーとしてメソッドを定義する
+これまでのCatクラスでは「猫とは体長と体重のあるもの」という定義になっている。  
+しかし、実際の猫は、鳴く、食べる、寝るといった行動を取る。  
+そういった、クラスの働きはメソッドと呼ばれる。  
+では、Catクラスに「鳴く（meow）」メソッドと「食べる（eat）」メソッドを追加してみよう。
+
+```TypeScript
+class Cat{
+    name: string
+    length: number
+    weight: number
+    meow(): string {
+        return 'にゃんー'
+    }
+    eat() {
+        this.length += 0.1
+        this.weight += 0.1
+    }
+}
+
+const myCat = new Cat()
+myCat.name = 'mimi'
+myCat.length = 45 //cm
+myCat.weight = 4 //kg
+myCat.eat()
+alert(myCat.name + 'の鳴き声は' + myCat.meow() + '\n体長は' + myCat.length + ' cm' + ' ,体重は' + myCat.weight + ' Kg')
+window.close()
+```
+[Playground](http://www.typescriptlang.org/play/#src=class%20Cat%7B%0D%0A%20%20%20%20name%3A%20string%3B%0D%0A%20%20%20%20length%3A%20number%3B%0D%0A%20%20%20%20weight%3A%20number%3B%0D%0A%20%20%20%20meow()%3A%20string%20%7B%0D%0A%20%20%20%20%20%20%20%20return%20'%E3%81%AB%E3%82%83%E3%82%93%E3%83%BC'%3B%0D%0A%20%20%20%20%7D%0D%0A%20%20%20%20eat()%20%7B%0D%0A%20%20%20%20%20%20%20%20this.length%20%2B%3D%200.1%3B%0D%0A%20%20%20%20%20%20%20%20this.weight%20%2B%3D%200.1%3B%0D%0A%20%20%20%20%7D%0D%0A%7D%0D%0A%0D%0Aconst%20myCat%20%3D%20new%20Cat()%3B%0D%0AmyCat.name%20%3D%20'mimi'%3B%0D%0AmyCat.length%20%3D%2045%3B%0D%0AmyCat.weight%20%3D%204%3B%0D%0AmyCat.eat()%3B%0D%0Aalert(myCat.name%20%2B%20'%E3%81%AE%E9%B3%B4%E3%81%8D%E5%A3%B0%E3%81%AF'%20%2B%20myCat.meow()%20%2B%20'%5Cn%E4%BD%93%E9%95%B7%E3%81%AF'%20%2B%20myCat.length%20%2B%20'%20cm'%20%2B%20'%20%2C%E4%BD%93%E9%87%8D%E3%81%AF'%20%2B%20myCat.weight%20%2B%20'%20Kg')%3B%0D%0Awindow.close()%3B) でコンパイル
+
+### メソッドのオーバーロード
+メソッドはオーバーロードできる。  
+つまり、同じ名前で異なる引数を持つ関数を宣言し、いずれの場合にも対応できるように実装すればよい。  
+ここでは、meowメソッドに引数を指定しなかった場合には「にゃーん」と鳴き、  
+引数を指定した場合には、その引数を鳴き声とする。
+
+```TypeScript
+class Cat{
+    name: string
+    length: number
+    weight: number
+    meow(): string
+    meow(s: string): string
+    meow(s?: any): string
+    {
+        if (typeof (s) == 'string') {
+            return s
+        }
+        else {
+            return 'にゃんー'
+        }
+    }
+    eat() {
+        this.length += 0.1
+        this.weight += 0.1
+    }
+}
+
+const myCat = new Cat()
+myCat.name = 'mimi'
+myCat.length = 45
+myCat.weight = 4
+myCat.eat()
+alert(myCat.name + 'の鳴き声は' + myCat.meow() + '\n体長は' + myCat.length + ' cm' + ' ,体重は' + myCat.weight + ' Kg')
+window.close()
+```
+[Playground](http://www.typescriptlang.org/play/#src=class%20Cat%7B%0D%0A%20%20%20%20name%3A%20string%3B%0D%0A%20%20%20%20length%3A%20number%3B%0D%0A%20%20%20%20weight%3A%20number%3B%0D%0A%20%20%20%20meow()%3A%20string%3B%0D%0A%20%20%20%20meow(s%3A%20string)%3A%20string%3B%0D%0A%20%20%20%20meow(s%3F%3A%20any)%3A%20string%0D%0A%20%20%20%20%7B%0D%0A%20%20%20%20%20%20%20%20if%20(typeof%20(s)%20%3D%3D%20'string')%20%7B%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20return%20s%3B%0D%0A%20%20%20%20%20%20%20%20%7D%0D%0A%20%20%20%20%20%20%20%20else%20%7B%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20return%20'%E3%81%AB%E3%82%83%E3%82%93%E3%83%BC'%3B%0D%0A%20%20%20%20%20%20%20%20%7D%0D%0A%20%20%20%20%7D%0D%0A%20%20%20%20eat()%20%7B%0D%0A%20%20%20%20%20%20%20%20this.length%20%2B%3D%200.1%3B%0D%0A%20%20%20%20%20%20%20%20this.weight%20%2B%3D%200.1%3B%0D%0A%20%20%20%20%7D%0D%0A%7D%0D%0A%0D%0Aconst%20myCat%20%3D%20new%20Cat()%3B%0D%0AmyCat.name%20%3D%20'mimi'%3B%0D%0AmyCat.length%20%3D%2045%3B%0D%0AmyCat.weight%20%3D%204%3B%0D%0AmyCat.eat()%3B%0D%0Aalert(myCat.name%20%2B%20'%E3%81%AE%E9%B3%B4%E3%81%8D%E5%A3%B0%E3%81%AF'%20%2B%20myCat.meow()%20%2B%20'%5Cn%E4%BD%93%E9%95%B7%E3%81%AF'%20%2B%20myCat.length%20%2B%20'%20cm'%20%2B%20'%20%2C%E4%BD%93%E9%87%8D%E3%81%AF'%20%2B%20myCat.weight%20%2B%20'%20Kg')%3B%0D%0Awindow.close()%3B) でコンパイル
+
+### コンストラクター
+コンストラクターとは、インスタンスの作成時に自動的に実行されるメソッドで、  
+初期値の設定などに使われる。
+
+```TypeScript
+class Cat {
+  length: number
+  weight: number
+  name: string
+  constructor() {
+    this.name = "名なし"
+  }
+}
+
+const myCat = new Cat()
+alert("名前は" + myCat.name + "です") // 名前は名なしです
+window.close()
+```
+[Playground](http://www.typescriptlang.org/play/#src=class%20Cat%20%7B%0D%0A%20%20%20%20length%3A%20number%3B%0D%0A%20%20%20%20weight%3A%20number%3B%0D%0A%20%20%20%20name%3A%20string%3B%0D%0A%20%20constructor()%20%7B%0D%0A%20%20%20%20%20%20this.name%20%3D%20%22%E5%90%8D%E3%81%AA%E3%81%97%22%3B%0D%0A%20%20%7D%0D%0A%7D%0D%0A%0D%0Aconst%20myCat%20%3D%20new%20Cat()%3B%0D%0Aalert(%22%E5%90%8D%E5%89%8D%E3%81%AF%22%20%2B%20myCat.name%20%2B%20%22%E3%81%A7%E3%81%99%22)%3B%0D%0Awindow.close()%3B) でコンパイル
+
+### コンストラクターのオーバーロード
+
+```TypeScript
+class Cat {
+	length: number
+	weight: number
+	name: string
+	constructor()
+	constructor(s: string)
+	constructor(s?: string) {
+		if (typeof (s) == "string") {
+			this.name = s
+		} else {
+			this.name = "名なし"
+		}
+	}
+}
+
+var myCat = new Cat("タマ")
+var yourCat = new Cat()
+alert("私の猫の名前は" + myCat.name + "\nあなたの猫の名前は" + yourCat.name + "です")
+window.close()
+```
+
+### 情報の隠蔽
+
