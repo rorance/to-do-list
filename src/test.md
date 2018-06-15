@@ -1,15 +1,15 @@
 # ![image1](logo.png)
-## TypeScript とは
-#### 1. TypeScriptはJavaScriptのスーパーセットである
+## I. TypeScript とは
+**1. TypeScriptはJavaScriptのスーパーセットである**
 ![image2](typejava.png)  
-既存のJavaScriptプログラムは、全て有効なTypeScriptプログラムとなる
-#### 2. 静的型付けとクラスベースオブジェクト指向
-#### 3. TypeScriptは大規模なアプリケーションの開発のために設計されている
-#### 4. オープンソース
-#### 5. JavaScriptにコンパイルされる
-#### 6. TypeScriptでは変数の宣言時にデータ型を指定できる
+既存のJavaScriptプログラムは、全て有効なTypeScriptプログラムとなる  
+**2. 静的型付けとクラスベースオブジェクト指向**  
+**3. TypeScriptは大規模なアプリケーションの開発のために設計されている**
+**4. オープンソース**
+**5. JavaScriptにコンパイルされる**
+**6. TypeScriptでは変数の宣言時にデータ型を指定できる**
 
-## Hello World
+## II. Hello World
 
 簡単なHello Worldプログラムを作ってみよう
 
@@ -18,9 +18,9 @@ const message: string = 'Hello World!'
 console.log(message) //ブラウザでF12を押す、consoleで確認できる
 alert(message) //alertが出る
 ```
-[Playground](http://www.typescriptlang.org/play/#src=const%20message%3A%20string%20%3D%20'Hello%20World!'%3B%0D%0Aconsole.log(message)%3B%0D%0Aalert(message)%3B)でコンパイル
+[Playground](http://www.typescriptlang.org/play/#src=const%20message%3A%20string%20%3D%20'Hello%20World!'%3B%0D%0Aconsole.log(message)%3B%0D%0Aalert(message)%3B) でコンパイル
 
-## 変数と宣言
+## III. 変数と宣言
 ```TypeScript
 const message: string = 'This is a book'
 ----------------------------------------
@@ -28,7 +28,7 @@ const: 変数を宣言するためのキーワード
 message: 変数名
 string: データ型 
 ```
-### Var
+### 1. Var
 
 従来の JavaScript での変数宣言には var キーワードが使われてきました。
 
@@ -48,7 +48,7 @@ f()
 // 2
 ```
 
-### Let
+### 2. Let
 
 Letを使った場合、ブロックレベルで変数のスコープが定義される
 
@@ -68,7 +68,7 @@ f()
 // 1
 ```
 
-### const
+### 3. const
 read only
 
 ```TypeScript
@@ -76,7 +76,28 @@ const x: string = 'const'
 x = 'change' // error
 ```
 
-## 基本の型
+### 4. let, const, var, のスコープの違い
+```TypeScript
+(function () {
+  if (true) {
+    var hoge = 'hoge'
+    let fuga = 'fuga'
+    const piyo = 'piyo'
+  
+    console.log(hoge) //hoge
+    console.log(fuga) //fuga
+    console.log(piyo) //piyo
+  }
+    
+  console.log(hoge) //hoge
+  console.log(fuga) //ReferenceError: fuga is not defined
+  console.log(piyo) //ReferenceError: piyo is not defined
+}());
+```
+
+
+
+## IV. 基本の型
 ### 1. boolean
 
 真偽値（trueまたはfalseのいずれかの値）
@@ -103,6 +124,8 @@ const decimal: number = 6
 const hex: number = 0x2537
 const binary: number = 0b1010
 const octal: number = 0o22467
+
+const numbers:number = '123' //エラー
 ```
 
 in JavaScript
@@ -112,6 +135,8 @@ var decimal = 6
 var hex = 0x2537
 var binary = 10
 var octal = 0o22467
+
+var number = '123' //ok
 ```
 ### 3. String
 文字列はダブルクォート(")またはシングルクォート(')で囲みます。
@@ -121,12 +146,15 @@ in TypeScript
 ```TypeScript
 const message: string
 message = 'Happy BirthDay'
+
+const strings: string = 1 //エラー
 ```
 
 in JavaScript
 
 ```JavaScript
-const message = 'Happy new year'
+var message = 'Happy new year'
+var strings = 1 //ok
 ```
 
 ### 4. Array(配列)
@@ -160,7 +188,7 @@ const sky: Color = Color.blue
 alert(sky)
 
 ```
-[Playground](http://www.typescriptlang.org/play/#src=enum%20Color%20%7B%20red%20%3D%201%2C%20green%2C%20blue%20%7D%3Bconst%20sky%3A%20Color%20%3D%20Color.blue%3Balert(sky)%3B)でコンパイル
+[Playground](http://www.typescriptlang.org/play/#src=enum%20Color%20%7B%20red%20%3D%201%2C%20green%2C%20blue%20%7D%3Bconst%20sky%3A%20Color%20%3D%20Color.blue%3Balert(sky)%3B) でコンパイル
 
 in JavaScript
 
@@ -196,7 +224,7 @@ console.log(key) //'DOWN'
 console.log(typeof key) //string
 
 ```
-[Playground](http://www.typescriptlang.org/play/#src=enum%20Direction%20%7B%20Up%20%3D%20'UP'%2C%20Down%20%3D%20'DOWN'%2C%20Left%20%3D%20'LEFT'%2C%20Right%20%3D%20'RIGHT'%2C%20%7D%3B%20const%20key%3A%20Direction%20%3D%20Direction.Down%3B%20console.log(key)%3B%20console.log(typeof%20key)%3B)でコンパイル
+[Playground](http://www.typescriptlang.org/play/#src=enum%20Direction%20%7B%20Up%20%3D%20'UP'%2C%20Down%20%3D%20'DOWN'%2C%20Left%20%3D%20'LEFT'%2C%20Right%20%3D%20'RIGHT'%2C%20%7D%3B%20const%20key%3A%20Direction%20%3D%20Direction.Down%3B%20console.log(key)%3B%20console.log(typeof%20key)%3B) でコンパイル
 
 ### 6. Date
 TypeScript で現在の日付時刻を格納する変数nowを得るには以下のように記述
@@ -245,12 +273,12 @@ console.log(typeof notSure) //boolean
 //typeof 変数名は変数の型をチェックすることができる
 
 ```
-[Playground](http://www.typescriptlang.org/play/#src=let%20notSure%3A%20any%20%3D%204%3B%20console.log(typeof%20notSure)%3BnotSure%20%3D%20'maybe%20a%20string%20instead'%3Bconsole.log(typeof%20notSure)%3BnotSure%20%3D%20false%3Bconsole.log(typeof%20notSure)%3B)でコンパイル
+[Playground](http://www.typescriptlang.org/play/#src=let%20notSure%3A%20any%20%3D%204%3B%20console.log(typeof%20notSure)%3BnotSure%20%3D%20'maybe%20a%20string%20instead'%3Bconsole.log(typeof%20notSure)%3BnotSure%20%3D%20false%3Bconsole.log(typeof%20notSure)%3B) でコンパイル
 
 Any 型は他の型の一部としても使えます。
 
 ```TypeScript
-let list: any[] = [1, true, "free"] 
+let list: any[] = [1, true, 'free'] 
 // 任意の型を含められる
 ```
 
@@ -265,7 +293,7 @@ price = '無料' // 文字列も代入できる
 let value = 5000 // number型と推測される
 value = '高い' // 文字列を代入しようとするとエラーになる
 ```
-[Playground](http://www.typescriptlang.org/play/#src=let%20price%3Bprice%20%3D%201000%3Bconsole.log(typeof%20price)%3Bprice%20%3D%20'%E7%84%A1%E6%96%99'%3Blet%20value%20%3D%205000%3Bvalue%20%3D%20'%E9%AB%98%E3%81%84'%3B)でコンパイル
+[Playground](http://www.typescriptlang.org/play/#src=let%20price%3Bprice%20%3D%201000%3Bconsole.log(typeof%20price)%3Bprice%20%3D%20'%E7%84%A1%E6%96%99'%3Blet%20value%20%3D%205000%3Bvalue%20%3D%20'%E9%AB%98%E3%81%84'%3B) でコンパイル
 
 ### 8. Void
 
@@ -292,7 +320,20 @@ const u: undefined = undefined
 const n: null = null
 ```
 
-## 式と演算
+### 10. Tuple
+タプル型は、要素の個数・型が決められた配列を表現することを可能にします。  
+例えば、あなたが文字列と数値のペアを値として表現したいとした場合は次のようにします。
+
+```TypeScript
+// タプル型の宣言
+let x: [string, number];
+// 初期化
+x = ["hello", 10]; // OK
+// 不適切な初期化
+x = [10, "hello"]; // Error
+```
+
+## V.式と演算
 
 ### 1. 簡単な演算
 
@@ -501,7 +542,7 @@ alert(c) // true
 ```
 [Playground](http://www.typescriptlang.org/play/#src=function%20a()%20%7B%0D%0A%20%20%20%20console.log('Hello%20world')%3B%0D%0A%7D%0D%0Aconst%20b%20%3D%20new%20a()%3B%0D%0Aconst%20c%20%3D%20b%20instanceof%20a%3B%0D%0Aalert(c)%3B) でコンパイル
 
-## 条件分岐
+## VI. 条件分岐
 
 ### 1. if ... else文を使った例
 式の値によって異なる文を実行する。if文を組み合わせ、異なる変数の値を調べて多分岐させることもできる
@@ -520,7 +561,7 @@ else {
 }
 ```
 
-[Playground](http://www.typescriptlang.org/play/#src=let%20a%3A%20number%3B%0Afunction%20dize()%20%7B%0A%09a%20%3D%20Math.floor(Math.random()%20*%206)%20%2B%201%3B%0A%7D%0Adize()%3B%0Aif%20(a%3E3)%20%7B%0A%09alert(a%20%2B%20'%20is%20big')%3B%0A%7D%0Aelse%20%7B%0A%09alert(a%20%2B%20'%20is%20small')%3B%0A%7D) でコンパイル
+[Playground](http://www.typescriptlang.org/play/#src=let%20a%3A%20number%3B%0Afunction%20dize()%20%7B%0A%09a%20%3D%20Math.floor(Math.random()%20*%206)%20%2B%201%3B%0A%7D%0Adize()%3B%0Aif%20(a%20%3E%203)%20%7B%0A%09alert(a%20%2B%20'%20is%20big')%3B%0A%7D%0Aelse%20%7B%0A%09alert(a%20%2B%20'%20is%20small')%3B%0A%7D) でコンパイル
 
 ### 2. switch文を使った例
 
@@ -548,7 +589,7 @@ switch (n) {
   default:
     fortune = '大凶'
 }
-alert(n + ':' + fortune);
+alert(n + ':' + fortune)
 ```
 [Playground](http://www.typescriptlang.org/play/#src=let%20fortune%3A%20string%3B%0Alet%20n%3A%20number%3B%0An%20%3D%20Math.floor(Math.random()%20*%207)%3B%20%0Aswitch%20(n)%20%7B%0A%09case%200%3A%0A%09case%201%3A%0A%09%09fortune%20%3D%20'%E5%A4%A7%E5%90%89'%3B%0A%09%09break%3B%0A%09case%202%3A%0A%09%09fortune%20%3D%20'%E4%B8%AD%E5%90%89'%3B%0A%09%09break%3B%0A%09case%203%3A%0A%09case%204%3A%0A%09%09fortune%20%3D%20'%E5%B0%8F%E5%90%89'%3B%0A%09%09break%3B%0A%09case%205%3A%0A%09%09fortune%20%3D%20'%E5%87%B6'%3B%0A%09%09break%3B%0A%09default%3A%0A%09%09fortune%20%3D%20'%E5%A4%A7%E5%87%B6'%3B%0A%7D%0Aalert(n%20%2B%20'%3A'%2B%20fortune)%3B) でコンパイル
 
@@ -571,7 +612,7 @@ alert(pass) // 不合格
 ```
 [Playground](http://www.typescriptlang.org/play/#src=const%20score%20%3D%2059%3B%0D%0Aconst%20pass%3A%20string%20%3D%20(score%20%3E%3D%2060%20%3F%20'%E5%90%88%E6%A0%BC'%20%3A%20'%E4%B8%8D%E5%90%88%E6%A0%BC')%3B%0D%0Aalert(pass)%3B) でコンパイル
 
-## 繰り返し処理
+## VII. 繰り返し処理
 条件を満たしている間、同じ文を繰り返して実行したり、一定の回数だけ文を繰り返し実行したりする
 
 ### 1. while 文
@@ -649,7 +690,7 @@ class Smartphone {
 	camera:string
 	screenSize:string
 }
-const i:Smartphone = new Smartphone();
+const i:Smartphone = new Smartphone()
 i.name = 'iPhone8'
 i.camera = '1200Mpx'
 i.screenSize = '4.7"'
@@ -661,16 +702,30 @@ for (const x in i) {
 #### for...in文の構造
 ![image10](forin.png)
 
-## 配列
+### 5. for...of V.S. for...in
+for..ofとfor..in文は、どちらもリストを繰り返し処理するものですが、その繰り返す値が異なり、  
+for..inはオブジェクトのキーのリストを返しますが、 for..ofはオブジェクトの数値プロパティの値のリストを返します
+
+```TypeScript
+let list = [4, 5, 6];
+for (let i in list) {
+   console.log(i); // "0", "1", "2",
+}
+for (let i of list) {
+   console.log(i); // "4", "5", "6"
+}
+```
+
+## VIII. 配列
 配列を宣言するには、全ての要素を代表するような変数名を一つ付けておけばよい。  
 配列の個々の要素はインデックスと呼ばれる番号で区別する。
 
-### 基本配列と出力
+### 1. 基本配列と出力
 ```TypeScript
 let carBrandList: string[] = new Array(4) // 4つ入りの配列を宣言し、中身は文字列
 carBrandList = ['Audi', 'Benz', 'BMW', 'Lexus']
 
-console.log(carBrandList) // 0:'Audi', 1:'Benz', 2:'BMW', 3;'Lexus' Length=4
+console.log(carBrandList) // 0:'Audi', 1:'Benz', 2:'BMW', 3:'Lexus' Length=4
 // 配列を出力
 
 for (let brand of carBrandList) {
@@ -678,12 +733,12 @@ for (let brand of carBrandList) {
 } // 配列の内容を一つずつ出力
 
 console.log(carBrandList[2]) // BMW
-// 指定した配列の中身の順番を出力
+// 指定した配列中身の順番を出力
 ```
 
 [Playground](http://www.typescriptlang.org/play/#src=let%20carBrandList%3A%20string%5B%5D%20%3D%20new%20Array(4)%3B%0D%0AcarBrandList%20%3D%20%5B'Audi'%2C%20'Benz'%2C%20'BMW'%2C%20'Lexus'%5D%3B%0D%0A%0D%0Aconsole.log(carBrandList)%3B%0D%0A%0D%0Afor%20(let%20brand%20of%20carBrandList)%20%7B%0D%0A%09console.log(brand)%3B%0D%0A%7D%0D%0A%0D%0Aconsole.log(carBrandList%5B2%5D)%3B) でコンパイル
 
-### 配列内容の追加と削除
+### 2. 配列内容の追加と削除
 
 ```TypeScript
 let carBrandList: string[] = new Array()
@@ -693,17 +748,17 @@ carBrandList.splice(3) // carBrandList[3]を削除
 
 carBrandList.push('Volks') // Volksを配列の最後尾に追加
 
-console.log(carBrandList);
+console.log(carBrandList)
 
 for (let brand of carBrandList) {
-	console.log(brand);
+	console.log(brand)
 }
 
-console.log(carBrandList[2]);
+console.log(carBrandList[2])
 ```
 [Playground](http://www.typescriptlang.org/play/#src=let%20carBrandList%3A%20string%5B%5D%20%3D%20new%20Array()%3BcarBrandList%20%3D%20%5B'Audi'%2C%20'Benz'%2C%20'BMW'%2C%20'Lexus'%5D%3BcarBrandList.splice(3)%3BcarBrandList.push('Volks')%3Bconsole.log(carBrandList)%3Bfor%20(let%20brand%20of%20carBrandList)%20%7Bconsole.log(brand)%3B%7Dconsole.log(carBrandList%5B2%5D)%3B) でコンパイル
 
-### 配列と繰り返し処理
+### 3. 配列と繰り返し処理
 
 ```TypeScript
 const board: number[] = new Array( 10 )
@@ -722,8 +777,8 @@ alert( board )
 ```
 [Playground](http://www.typescriptlang.org/play/#src=const%20board%3A%20number%5B%5D%20%3D%20new%20Array(%2010%20)%3B%0D%0Alet%20temp%2C%20r1%2C%20r2%3A%20number%3B%0D%0Afor%20(%20let%20i%20%3D%200%3B%20i%20%3C%2010%3B%20i%2B%2B%20)%20%7B%0D%0A%09board%5Bi%5D%20%3D%20i%2B1%3B%0D%0A%7D%0D%0Afor%20(%20let%20count%20%3D%200%3B%20count%20%3C%2050%3B%20count%2B%2B%20)%20%7B%0D%0A%09r1%20%3D%20Math.floor(Math.random()%20*%2010)%3B%0D%0A%09r2%20%3D%20Math.floor(Math.random()%20*%2010)%3B%0D%0A%09temp%20%3D%20board%5Br1%5D%3B%0D%0A%09board%5Br1%5D%20%3D%20board%5Br2%5D%3B%0D%0A%09board%5Br2%5D%20%3D%20temp%3B%0D%0A%7D%0D%0Aalert(%20board%20)%3B) でコンパイル
 
-## 関数
-### 関数とは
+## IX. 関数
+### 1. 関数とは
 
 関数とはひとまとまりの処理を記述して名前を付けたもの。  
 関数の名前を指定し、必要に応じて値を与えてやれば、処理が実行され、結果が返される。  
@@ -731,19 +786,19 @@ alert( board )
 
 ![image11](function.png)
 
-### 関数の基本的な考え方
+### 2. 関数の基本的な考え方
 
 関数とは、引数を与えれば、戻り値を返してくれるひとまとまりの処理のこと。  
 「関数」の中で何が行われているかが分からなくても、値を与えてやるだけで結果が得られる。
 
 ![image12](function2.png)
 
-### 関数の大きな利点は、以下の2点である。
+### 3. 関数の大きな利点は、以下の2点である。
 
 1. 一度関数を書いておけば、内部でどういう処理をしているかを詳しく知らなくても利用できる  
 2. 必要な箇所で何度でも利用できる
 
-### 簡単な関数の書き方
+### 4. 簡単な関数の書き方
 
 ```TypeScript
 function add2(x: number, y: number): number {
@@ -756,25 +811,25 @@ window.close()
 ```
 [Playground](http://www.typescriptlang.org/play/#src=function%20add2(x%3A%20number%2C%20y%3A%20number)%3A%20number%20%7B%0D%0A%09return%20x%20%2B%20y%3B%0D%0A%7D%0D%0Aconst%20answer%3A%20number%20%3D%20add2(19%2C%2037)%3B%0D%0Aalert(answer)%3B%0D%0Awindow.close()%3B) でコンパイル  
 
-### 関数の書き方
+### 5. 関数の書き方
 ![image13](function3.png)
 
 変数answerを使わず、関数add2をalertメソッドの引数に直接指定してもよい
 
 ```TypeScript
-const answer: number = add2(10, 20); 
-alert(answer);
+const answer: number = add2(10, 20)
+alert(answer)
 ↓
-alert(add2(10, 20));
+alert(add2(10, 20))
 ```
 
-### 関数オブジェクトを参照する変数のデータ型を確認する
+### 6. 関数オブジェクトを参照する変数のデータ型を確認する
 ![image14](function4.PNG)  
 
 関数オブジェクトを参照する変数は、関数の引数の並びとそれらのデータ型、戻り値のデータ型によって型が決まる。
 
-### アロー関数式を使う
-「(引数のリスト) : 戻り値の型 => { 関数の処理 };」のような形式で書く
+### 7. アロー関数式を使う
+「(引数のリスト) : 戻り値の型 => { 関数の処理 }」のような形式で書く
 
 ```TypeScript
 const mul2 = (a: number, b: number): number => {
@@ -794,7 +849,7 @@ const mul2 = (a: number, b: number): number => a * b
 alert(mul2(8, 7))
 ```
 
-### 一つの関数で複数の戻り値を返す方法
+### 8. 一つの関数で複数の戻り値を返す方法
 戻り値にオブジェクトを指定すれば、複数の値をまとめて返せる。  
 以下は金額の割引と税込みを計算する例。
 
@@ -811,33 +866,35 @@ alert('Price= ' + iPhone8.price + 'Tax in= ' + iPhone8.taxin)
 ```
 [Playground](http://www.typescriptlang.org/play/#src=function%20total(x%3A%20number%2C%20y%3A%20number)%20%7B%0D%0A%09const%20a%20%3D%20x%20*%20y%3B%0D%0A%09const%20b%20%3D%20a%20*%201.08%3B%0D%0A%09return%20%7B%20price%3A%20a%2C%20taxin%3A%20b%20%7D%3B%0D%0A%7D%0D%0A%0D%0Aconst%20iPhone8%20%3D%20total(100000%2C%200.95)%3B%0D%0Aalert('Price%3D%20'%20%2B%20iPhone8.price%20%2B%20'Tax%20in%3D%20'%20%2B%20iPhone8.taxin)%3B) でコンパイル
 
-### 関数の応用例
+### 9. 関数の応用例
 
 簡単なメモlistを作成してみよう
 
 ```TypeScript
-const txt = document.createElement('input'); // input スペースを宣言
-const btn = document.createElement('button'); // ボタンを宣言
-const memo = document.createElement('textarea'); // textareaを宣言
-const list: string[] = new Array();
-btn.textContent = '押して';
+const txt = document.createElement('input') // input スペースを宣言
+const btn = document.createElement('button') // ボタンを宣言
+const memo = document.createElement('textarea') // textareaを宣言
+const list: string[] = new Array()
+btn.textContent = '押して'
 btn.onclick = function () {
 	if(txt.value!=''){
-		alert(txt.value + 'を追加した');
-		list.push(txt.value);
-		txt.value = '';
-		memo.value = list.toString();
+		alert(txt.value + 'を追加した')
+		list.push(txt.value)
+		txt.value = ''
+		memo.value = list.toString()
 	}
 	else {
-		alert("メモを入力してください")
+		alert('メモを入力してください')
 	}
-};
-document.body.appendChild(txt); // inputスペースを画面で表示
-document.body.appendChild(btn); // ボタンを画面で表示
-document.body.appendChild(memo); // textareaを画面で表示
+}
+document.body.appendChild(txt) // inputスペースを画面で表示
+document.body.appendChild(btn) // ボタンを画面で表示
+document.body.appendChild(memo) // textareaを画面で表示
 ```
 
-### オプションの引数
+[Playground](http://www.typescriptlang.org/play/#src=const%20txt%20%3D%20document.createElement('input')%20%2F%2F%20input%20%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%82%92%E5%AE%A3%E8%A8%80%0Aconst%20btn%20%3D%20document.createElement('button')%3B%0Aconst%20memo%20%3D%20document.createElement('textarea')%3B%0Aconst%20list%3A%20string%5B%5D%20%3D%20new%20Array()%3B%0Abtn.textContent%20%3D%20'%E6%8A%BC%E3%81%97%E3%81%A6'%3B%0Abtn.onclick%20%3D%20function%20()%20%7B%0A%09if(txt.value!%3D'')%7B%0A%09%09alert(txt.value%20%2B%20'%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%97%E3%81%9F')%3B%0A%09%09list.push(txt.value)%3B%0A%09%09txt.value%20%3D%20''%3B%0A%09%09memo.value%20%3D%20list.toString()%3B%0A%09%7D%0A%09else%20%7B%0A%09%09alert('%E3%83%A1%E3%83%A2%E3%82%92%E5%85%A5%E5%8A%9B%E3%81%97%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84')%3B%0A%09%7D%0A%7D%0Adocument.body.appendChild(txt)%3B%0Adocument.body.appendChild(btn)%3B%0Adocument.body.appendChild(memo)%3B) でコンパイル
+
+### 10. オプションの引数
 
 関数を定義するときには、仮引数としてオプションの引数が指定できる。  
 簡単な例で見てみよう。単価（price）と数量（amount）を基に、金額を求める関数があるものとする。  
@@ -872,7 +929,7 @@ ifの式はこう書くもよい
 if(rank!=undefined)
 ```
 
-### 引数の既定値を設定する
+### 11. 引数の既定値を設定する
 省略可能な引数には既定値が設定できる。
 
 ```TypeScript
@@ -886,7 +943,7 @@ alert('perimeter = ' + newCircle.perimeter + 'area = ' + newCircle.area)
 ```
 [Playground](http://www.typescriptlang.org/play/#src=function%20circle(r%3A%20number%2C%20pi%20%3D%203.14)%20%7B%0D%0A%09const%20x%20%3D%202%20*%20pi%20*%20r%3B%0D%0A%09const%20y%20%3D%20pi%20*%20r%20*%20r%3B%0D%0A%09return%20%7B%20perimeter%3A%20x%2C%20area%3A%20y%20%7D%3B%0D%0A%7D%0D%0Aconst%20newCircle%20%3D%20circle(4)%3B%0D%0Aalert('perimeter%20%3D%20'%20%2B%20newCircle.perimeter%20%2B%20'area%20%3D%20'%20%2B%20newCircle.area)%3B) でコンパイル
 
-### 関数のオーバーロード
+### 12. 関数のオーバーロード
 オーバーロードとは、同じ名前を持ち、異なる引数リストや戻り値の型を持つ複数の関数を定義すること
 
 ```TypeScript
@@ -896,17 +953,17 @@ function getProfile(x: any): string {
   if (typeof (x) == 'string') {
     return x + 'のメンバー番号：1234'
      else {
-    return "田中のメンバー番号は" + x
+    return '田中のメンバー番号は' + x
   }
 }
 alert(getProfile(1234)) //田中のメンバー番号は1234
 alert(getProfile('田中')) //田中のメンバー番号：1234
-window.close();
+window.close()
 ```
 
-[Playground](http://www.typescriptlang.org/play/#src=function%20getLength(x%3A%20number)%3A%20number%3Bfunction%20getLength(x%3A%20string)%3A%20number%3Bfunction%20getLength(x%3A%20any)%3A%20number%20%7Bif%20(typeof%20(x)%20%3D%3D%20'string')%20%7Breturn%20x.length%7D%20else%20%7Bif%20(x%20%3D%3D%200)%20return%201%3Breturn%20Math.floor(Math.log(x)%20%2F%20Math.LN10)%20%2B%201%3B%7D%7Dalert(getLength(123))%3Bwindow.close()%3B) でコンパイル
+[Playground](http://www.typescriptlang.org/play/#src=function%20getProfile(x%3A%20number)%3A%20string%3B%0D%0Afunction%20getProfile(x%3A%20string)%3A%20string%3B%0D%0Afunction%20getProfile(x%3A%20any)%3A%20string%20%7B%0D%0A%20%20%20%20if%20(typeof%20(x)%20%3D%3D%20'string')%20%7B%0D%0A%20%20%20%20%20%20%20%20return%20x%20%2B%20'%E3%81%AE%E3%83%A1%E3%83%B3%E3%83%90%E3%83%BC%E7%95%AA%E5%8F%B7%EF%BC%9A1234'%3B%0D%0A%20%20%20%20%7D%0D%0A%20%20%20%20%20else%20%7B%0D%0A%20%20%20%20%20%20%20%20return%20'%E7%94%B0%E4%B8%AD%E3%81%AE%E3%83%A1%E3%83%B3%E3%83%90%E3%83%BC%E7%95%AA%E5%8F%B7%E3%81%AF'%20%2B%20x%3B%0D%0A%20%20%7D%0D%0A%20%20%20%20%7D%0D%0Aalert(getProfile(1234))%3B%0D%0Aalert(getProfile('%E7%94%B0%E4%B8%AD'))%3B%0D%0Awindow.close()%3B) でコンパイル
 
-### ジェネリックス
+### 13. ジェネリックス
 ジェネリックスとは、データ型を仮に決めておき、  
 実際に使用するデータ型を呼び出し時に変えられるようにする機能で、総称型とも呼ばれる。  
 ジェネリックスを利用すると、データ型を関数の呼び出し時に決められる
@@ -920,11 +977,11 @@ function parrot<T>(data: T): T {
 alert(parrot<number>(100)) // 100
 alert(parrot<string>('Hello World')) // Hello World
 alert(parrot<string>(123)) // データ型が合わないのでこれはエラーとなる
-window.close();
+window.close()
 ```
 [Playground](http://www.typescriptlang.org/play/#src=function%20parrot%3CT%3E(data%3A%20T)%3A%20T%20%7B%0A%09let%20ret%3A%20T%3B%0A%09ret%20%3D%20data%3B%0A%09return%20ret%3B%0A%7D%0Aalert(parrot%3Cnumber%3E(100))%3B%0Aalert(parrot%3Cstring%3E('Hello%20World'))%3B%0Aalert(parrot%3Cstring%3E(123))%3B%0Awindow.close()%3B) でコンパイル
 
-### クロージャー
+### 14. クロージャー
 
 クロージャーとは、関数が定義された環境にある変数を利用できる機能
 
@@ -935,7 +992,7 @@ function getSerialNumber() {
     return origin += delta
   }
   return countUp
-};
+}
 const inside = getSerialNumber()
 alert(inside(2)) // 2
 alert(inside(3)) // 5
@@ -944,8 +1001,8 @@ window.close()
 ```
 [Playground](http://www.typescriptlang.org/play/#src=function%20getSerialNumber()%20%7B%0A%09var%20origin%20%3D%200%3B%0A%09function%20countUp(delta%3A%20number)%3A%20number%20%7B%0A%09%09return%20origin%20%2B%3D%20delta%3B%0A%09%7D%0A%09return%20countUp%3B%0A%7D%3B%0Avar%20inside%20%3D%20getSerialNumber()%3B%0Aalert(inside(2))%3B%0Aalert(inside(3))%3B%0Aalert(inside(-2))%3B%0Awindow.close()%3B) でコンパイル
 
-## クラス
-### 変数とオブジェクト
+## X. クラス
+### 1. 変数とオブジェクト
 クラスを紹介する前、まず変数とオブジェクトを紹介する。  
 例えば、一匹の猫を表したいとき、基本は体長と体重が必要  
 
@@ -973,7 +1030,7 @@ myCat.weight = 4 //Kg
 しかし、変数myCatが参照しているのは、汎用的に使われるObject型のオブジェクトであり、  
 他のオブジェクトと区別せずに使うこともできてしまう。
 
-### クラスを定義するには
+### 2. クラスを定義するには
 TypeScriptでは、より厳密、かつ柔軟にオブジェクトが取り扱えるようになっている。  
 そのために使われるのがクラスである。クラスとは、個々のオブジェクトではなく、  
 オブジェクトのひな型とでもいうべきものである。
@@ -994,7 +1051,7 @@ class Cat{
 クラスの中に含まれる変数はプロパティと呼ばれ、関数はメソッドと呼ばれる。  
 プロパティとメソッドを合わせてクラスのメンバーと呼ぶ。
 
-### クラスからインスタンスを作成する
+### 3. クラスからインスタンスを作成する
 クラスは、いわばひな型のようなものなので、実際のデータを取り扱うにはインスタンスを作成する必要がある。  
 インスタンスとは「実体」とでもいうべきものである。  
 **インスタンスの作成にはnew演算子を使う**。クラスの定義も併せて書いておこう。
@@ -1017,7 +1074,7 @@ newの後に「クラス名()」と書けば新しいインスタンスが作成
 （1）new演算子を使って、クラスを基にインスタンスを作る。new演算子は作成されたインスタンスの参照を返す。  
 （2）インスタンスの参照を変数myCatに代入する。それにより、myCatを利用すればCatクラスのインスタンスが利用できるようになる。
 
-### クラスのメンバーを利用する
+### 4. クラスのメンバーを利用する
 
 **「.」で区切ってメンバーを書けば、クラスのメンバーが利用できる。**
 
@@ -1037,7 +1094,7 @@ window.close()
 ```
 [Playground](http://www.typescriptlang.org/play/#src=class%20Cat%7B%0A%20%20%20%20name%3A%20string%3B%0A%20%20%20%20length%3A%20number%3B%0A%20%20%20%20weight%3A%20number%3B%0A%7D%0A%0Aconst%20myCat%20%3D%20new%20Cat()%3B%0AmyCat.name%20%3D%20'mimi'%3B%0AmyCat.length%20%3D%2045%3B%0AmyCat.weight%20%3D%204%3B%0Aalert(myCat.name%20%2B%20'%E3%81%AE%E4%BD%93%E9%95%B7%E3%81%AF'%20%2B%20myCat.length%20%2B%20'%20cm'%20%2B%20'%20%2C%E4%BD%93%E9%87%8D%E3%81%AF'%20%2B%20myCat.weight%20%2B%20'%20Kg')%3B%0Awindow.close()%3B) でコンパイル
 
-### クラスのメンバーとしてメソッドを定義する
+### 5. クラスのメンバーとしてメソッドを定義する
 これまでのCatクラスでは「猫とは体長と体重のあるもの」という定義になっている。  
 しかし、実際の猫は、鳴く、食べる、寝るといった行動を取る。  
 そういった、クラスの働きはメソッドと呼ばれる。  
@@ -1067,7 +1124,55 @@ window.close()
 ```
 [Playground](http://www.typescriptlang.org/play/#src=class%20Cat%7B%0D%0A%20%20%20%20name%3A%20string%3B%0D%0A%20%20%20%20length%3A%20number%3B%0D%0A%20%20%20%20weight%3A%20number%3B%0D%0A%20%20%20%20meow()%3A%20string%20%7B%0D%0A%20%20%20%20%20%20%20%20return%20'%E3%81%AB%E3%82%83%E3%82%93%E3%83%BC'%3B%0D%0A%20%20%20%20%7D%0D%0A%20%20%20%20eat()%20%7B%0D%0A%20%20%20%20%20%20%20%20this.length%20%2B%3D%200.1%3B%0D%0A%20%20%20%20%20%20%20%20this.weight%20%2B%3D%200.1%3B%0D%0A%20%20%20%20%7D%0D%0A%7D%0D%0A%0D%0Aconst%20myCat%20%3D%20new%20Cat()%3B%0D%0AmyCat.name%20%3D%20'mimi'%3B%0D%0AmyCat.length%20%3D%2045%3B%0D%0AmyCat.weight%20%3D%204%3B%0D%0AmyCat.eat()%3B%0D%0Aalert(myCat.name%20%2B%20'%E3%81%AE%E9%B3%B4%E3%81%8D%E5%A3%B0%E3%81%AF'%20%2B%20myCat.meow()%20%2B%20'%5Cn%E4%BD%93%E9%95%B7%E3%81%AF'%20%2B%20myCat.length%20%2B%20'%20cm'%20%2B%20'%20%2C%E4%BD%93%E9%87%8D%E3%81%AF'%20%2B%20myCat.weight%20%2B%20'%20Kg')%3B%0D%0Awindow.close()%3B) でコンパイル
 
-### メソッドのオーバーロード
+### 6. public、private、protected
+#### public (default)
+プログラムを通して、宣言したメンバに自由にアクセスすることが出来ました。  
+TypeScriptでは、デフォルトで各メンバはpublicになります。  
+publicを明示的に指定することも可能です。
+```TypeScript
+class Dog{
+  public length:number
+  public age:number
+  
+}
+```
+
+#### private
+メンバにprivateを指定した場合、クラス外からのアクセスは不可になります。
+```TypeScript
+class Animal {
+    private name: string
+    constructor(theName: string) { this.name = theName }
+}
+new Animal("Cat").name // Error: 'name' is private;
+```
+
+#### protected
+protected修飾子は、指定されたメンバが継承先のクラスのインスタンスからでもアクセス可能であることを除いて、 ほとんどprivate修飾子のように振る舞います。
+
+```TypeScript
+class Person {
+    protected name: string;
+    constructor(name: string) { this.name = name; }
+}
+class Employee extends Person {
+    private department: string;
+    constructor(name: string, department: string) {
+        super(name);
+        this.department = department;
+    }
+    public getElevatorPitch() {
+        return `Hello, my name is ${this.name} and I work in ${this.department}.`;
+    }
+}
+let howard = new Employee("Howard", "Sales");
+console.log(howard.getElevatorPitch());
+console.log(howard.name); // error
+```
+
+
+
+### 7. メソッドのオーバーロード
 メソッドはオーバーロードできる。  
 つまり、同じ名前で異なる引数を持つ関数を宣言し、いずれの場合にも対応できるように実装すればよい。  
 ここでは、meowメソッドに引数を指定しなかった場合には「にゃーん」と鳴き、  
@@ -1105,7 +1210,7 @@ window.close()
 ```
 [Playground](http://www.typescriptlang.org/play/#src=class%20Cat%7B%0D%0A%20%20%20%20name%3A%20string%3B%0D%0A%20%20%20%20length%3A%20number%3B%0D%0A%20%20%20%20weight%3A%20number%3B%0D%0A%20%20%20%20meow()%3A%20string%3B%0D%0A%20%20%20%20meow(s%3A%20string)%3A%20string%3B%0D%0A%20%20%20%20meow(s%3F%3A%20any)%3A%20string%0D%0A%20%20%20%20%7B%0D%0A%20%20%20%20%20%20%20%20if%20(typeof%20(s)%20%3D%3D%20'string')%20%7B%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20return%20s%3B%0D%0A%20%20%20%20%20%20%20%20%7D%0D%0A%20%20%20%20%20%20%20%20else%20%7B%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20return%20'%E3%81%AB%E3%82%83%E3%82%93%E3%83%BC'%3B%0D%0A%20%20%20%20%20%20%20%20%7D%0D%0A%20%20%20%20%7D%0D%0A%20%20%20%20eat()%20%7B%0D%0A%20%20%20%20%20%20%20%20this.length%20%2B%3D%200.1%3B%0D%0A%20%20%20%20%20%20%20%20this.weight%20%2B%3D%200.1%3B%0D%0A%20%20%20%20%7D%0D%0A%7D%0D%0A%0D%0Aconst%20myCat%20%3D%20new%20Cat()%3B%0D%0AmyCat.name%20%3D%20'mimi'%3B%0D%0AmyCat.length%20%3D%2045%3B%0D%0AmyCat.weight%20%3D%204%3B%0D%0AmyCat.eat()%3B%0D%0Aalert(myCat.name%20%2B%20'%E3%81%AE%E9%B3%B4%E3%81%8D%E5%A3%B0%E3%81%AF'%20%2B%20myCat.meow()%20%2B%20'%5Cn%E4%BD%93%E9%95%B7%E3%81%AF'%20%2B%20myCat.length%20%2B%20'%20cm'%20%2B%20'%20%2C%E4%BD%93%E9%87%8D%E3%81%AF'%20%2B%20myCat.weight%20%2B%20'%20Kg')%3B%0D%0Awindow.close()%3B) でコンパイル
 
-### コンストラクター
+### 8. コンストラクター
 コンストラクターとは、インスタンスの作成時に自動的に実行されるメソッドで、  
 初期値の設定などに使われる。
 
@@ -1125,7 +1230,7 @@ window.close()
 ```
 [Playground](http://www.typescriptlang.org/play/#src=class%20Cat%20%7B%0A%09length%3A%20number%3B%0A%09weight%3A%20number%3B%0A%09name%3A%20string%3B%0A%20%20constructor()%20%7B%0A%09%20%20this.name%20%3D%20'%E5%90%8D%E3%81%AA%E3%81%97'%3B%0A%20%20%7D%0A%7D%0A%0Aconst%20myCat%20%3D%20new%20Cat()%3B%0Aalert('%E5%90%8D%E5%89%8D%E3%81%AF'%20%2B%20myCat.name%20%2B%20'%E3%81%A7%E3%81%99')%3B%20%0Awindow.close()%3B) でコンパイル
 
-### コンストラクターのオーバーロード
+### 9. コンストラクターのオーバーロード
 
 ```TypeScript
 class Cat {
@@ -1143,13 +1248,13 @@ class Cat {
   }
 }
 
-var myCat = new Cat('タマ')
-var yourCat = new Cat()
+const myCat = new Cat('タマ')
+const yourCat = new Cat()
 alert('私の猫の名前は' + myCat.name + '\nあなたの猫の名前は' + yourCat.name + 'です')
 window.close()
 ```
 [Playground](http://www.typescriptlang.org/play/#src=class%20Cat%20%7B%0A%09length%3A%20number%3B%0A%09weight%3A%20number%3B%0A%09name%3A%20string%3B%0A%09constructor()%3B%0A%09constructor(s%3A%20string)%3B%0A%09constructor(s%3F%3A%20string)%20%7B%0A%09%09if%20(typeof%20(s)%20%3D%3D%20'string')%20%7B%0A%09%09%09this.name%20%3D%20s%3B%0A%20%20%20%20%09%7D%20else%20%7B%0A%09%09%09this.name%20%3D%20'%E5%90%8D%E3%81%AA%E3%81%97'%3B%0A%09%09%7D%0A%09%7D%0A%7D%0A%0Avar%20myCat%20%3D%20new%20Cat(%22%E3%82%BF%E3%83%9E%22)%3B%0Avar%20yourCat%20%3D%20new%20Cat()%3B%0Aalert('%E7%A7%81%E3%81%AE%E7%8C%AB%E3%81%AE%E5%90%8D%E5%89%8D%E3%81%AF'%20%2B%20myCat.name%20%2B%20'%5Cn%E3%81%82%E3%81%AA%E3%81%9F%E3%81%AE%E7%8C%AB%E3%81%AE%E5%90%8D%E5%89%8D%E3%81%AF'%20%2B%20yourCat.name%20%2B%20'%E3%81%A7%E3%81%99')%3B%0Awindow.close()%3B) でコンパイル
-### 情報の隠蔽
+### 10. 情報の隠蔽
 プライベート（private）なメンバー（ここではnameプロパティ）はクラス外からはアクセスできないが、  
 パブリック（public）なメンバー（ここではsetName／getNameメソッド）  
 はクラスの外からでもアクセスできる。  
@@ -1173,9 +1278,9 @@ class Cat {
 }
 
 const myCat = new Cat()
-myCat.setName('アームストロングサイクロンジェットアームストロング砲');
-alert('私の猫の名前は' + myCat.getName() + 'です');
-window.close();
+myCat.setName('アームストロングサイクロンジェットアームストロング砲')
+alert('私の猫の名前は' + myCat.getName() + 'です')
+window.close()
 ```
 [Playground](http://www.typescriptlang.org/play/#src=class%20Cat%20%7B%0D%0A%20%20%20%20private%20name%3A%20string%3B%0D%0A%09public%20setName(s%3A%20string)%20%7B%0D%0A%20%20%20%20%20%20%20%20this.name%20%3D%20s.slice(0%2C%208)%3B%0D%0A%09%7D%0D%0A%09public%20getName()%3A%20string%20%7B%0D%0A%20%20%20%20%20%20%20%20return%20this.name%3B%0D%0A%09%7D%0D%0A%7D%0D%0A%0D%0Aconst%20myCat%20%3D%20new%20Cat()%3B%0D%0AmyCat.setName('%E3%82%A2%E3%83%BC%E3%83%A0%E3%82%B9%E3%83%88%E3%83%AD%E3%83%B3%E3%82%B0%E3%82%B5%E3%82%A4%E3%82%AF%E3%83%AD%E3%83%B3%E3%82%B8%E3%82%A7%E3%83%83%E3%83%88%E3%82%A2%E3%83%BC%E3%83%A0%E3%82%B9%E3%83%88%E3%83%AD%E3%83%B3%E3%82%B0%E7%A0%B2')%3B%0D%0Aalert('%E7%A7%81%E3%81%AE%E7%8C%AB%E3%81%AE%E5%90%8D%E5%89%8D%E3%81%AF'%20%2B%20myCat.getName()%20%2B%20'%E3%81%A7%E3%81%99')%3B%0D%0Awindow.close()%3B) でコンパイル
 
@@ -1184,7 +1289,7 @@ setNameメソッドを使ってnameプロパティに値を設定できる。
 getNameメソッドを使って値を取り出せる。  
 **変数の宣言やメソッドの定義の前に何も書かなかった場合には、publicが指定されたものと見なされる。**
 
-### クラスの継承とメソッドのオーバーライド
+### 11. クラスの継承とメソッドのオーバーライド
 継承とは、元のクラス（親クラス）の機能を全て受け継いだ新しいクラス（子クラス）を定義すること。  
 クラスを継承するには、新しいクラスの名前の後にextendsというキーワードを書き、  
 その後に親クラスの名前を書けばよい。  
@@ -1210,7 +1315,7 @@ class Tiger extends Cat {
   }
 }
 
-var myTiger = new Tiger()
+const myTiger = new Tiger()
 myTiger.setName('とらお')
 alert('私の虎の名前は' + myTiger.getName() + 'で、' + myTiger.meow() + 'と鳴きます')
 window.close()
@@ -1243,9 +1348,250 @@ class Tiger extends Cat {
 	}
 }
 
-var myTiger = new Tiger()
+const myTiger = new Tiger()
 myTiger.setName('とらお')
 alert('私の虎の名前は' + myTiger.getName() + 'ですが、甘えているときには' + myTiger.meowlikecat() + 'と鳴きます')
 window.close()
 ```
 [Playground](http://www.typescriptlang.org/play/#src=class%20Cat%20%7B%0A%09private%20name%3A%20string%3B%0A%09public%20setName(s%3A%20string)%20%7B%0A%09%09this.name%20%3D%20s.slice(0%2C%208)%3B%0A%09%7D%0A%09public%20getName()%3A%20string%20%7B%0A%09%09return%20this.name%3B%0A%09%7D%0A%09public%20meow()%3A%20string%20%7B%0A%09%09return%20%22%E3%81%AB%E3%82%83%E3%83%BC%E3%82%93%22%3B%0A%09%7D%0A%7D%0A%0Aclass%20Tiger%20extends%20Cat%20%7B%0A%09public%20meow()%3A%20string%20%7B%0A%09%09return%20%22%E3%81%8C%E3%81%8A%E3%83%BC%22%3B%0A%09%7D%0A%09public%20meowlikecat()%3A%20string%20%7B%0A%09%09return%20super.meow()%3B%0A%09%7D%0A%7D%0A%0Avar%20myTiger%20%3D%20new%20Tiger()%3B%0AmyTiger.setName(%22%E3%81%A8%E3%82%89%E3%81%8A%22)%3B%0Aalert(%22%E7%A7%81%E3%81%AE%E8%99%8E%E3%81%AE%E5%90%8D%E5%89%8D%E3%81%AF%22%20%2B%20myTiger.getName()%20%2B%20%22%E3%81%A7%E3%81%99%E3%81%8C%E3%80%81%E7%94%98%E3%81%88%E3%81%A6%E3%81%84%E3%82%8B%E3%81%A8%E3%81%8D%E3%81%AB%E3%81%AF%22%20%2B%20myTiger.meowlikecat()%20%2B%20%22%E3%81%A8%E9%B3%B4%E3%81%8D%E3%81%BE%E3%81%99%22)%3B%0Awindow.close()%3B) でコンパイル
+
+## XI.インターフェース
+TypeScriptの核となる基本原則のひとつに、値の型チェックが値が持つ形状に焦点を当てていることがあげられます。  
+これは、時には"ダックタイピング"または"構造的部分型"と呼ばれます。  
+TypeScriptでは、インターフェースはこれらの型の名付けの規則を満たし、  
+また、プロジェクトの外観を構成するだけでなく、コードの構造を定義する強力な方法になります。
+
+### 1. 初めてのインターフェース
+インターフェースがどのように動作するのかを、簡単な例で確認してみましょう。
+
+```TypeScript
+function printLabel(labelledObj: { label: string }) {
+    console.log(labelledObj.label);
+}
+let myObj = {size: 10, label: "Size 10 Object"};
+printLabel(myObj);
+```
+型チェッカーは、printLabel呼び出しをチェックします。printLabel関数はひとつの引数を持ち、  
+labelと呼ばれる文字列型のプロパティを持つオブジェクトが渡されることを必要とします。  
+実際のオブジェクトはこれより多くのプロパティを持ちますが、  
+コンパイラは必要とされている最低限のひとつのプロパティが存在し、  
+それが必要とされている型とマッチしていることしかチェックしないことに注意してください。  
+TypeScriptを寛大にさせないように、こちらで少しカバーすることになるケースが存在します。
+
+```TypeScript
+interface LabelledValue {
+    label: string;
+}
+function printLabel(labelledObj: LabelledValue) {
+    console.log(labelledObj.label);
+}
+let myObj = {size: 10, label: "Size 10 Object"};
+printLabel(myObj);
+```
+
+LabelledValueインターフェースは、先の例で必要とされていたものを表現するのに使用できる名前になります。  
+ここでも依然として、labelと呼ばれる文字列型の単一のプロパティを持つことが表されます。  
+printLabelに渡すこのオブジェクトが、他の言語でそうする必要があるように、  
+このインターフェースを実装すると明確に記述していない事に注意してください。  
+ここでは、事柄を形作っているだけに過ぎません。  
+関数に渡すオブジェクトが必須となるものを揃えてさえいれば、それは問題なく受け入れられます。  
+重要な点は、型チェッカーがこれらのプロパティに対して正しい順序であることを必要とせず、  
+インターフェースで指定されているプロパティが提供され、必須となる型を持っているかだけを必要としていることです。
+
+### 2. 任意のプロパティ
+インターフェースの全てのプロパティを必須にする必要はありません。  
+幾つかのものはある条件下でのみ存在し、または全く存在しないようにすることも可能です。  
+これら任意のプロパティは、 関数に必要なプロパティだけを持たせたオブジェクトを渡す際の、  
+"option bags"のようなパターンを作る際によく使用されます。  
+下記はこのパターンの例になります。
+
+```TypeScript
+interface SquareConfig {
+    color?: string;
+    width?: number;
+}
+function createSquare(config: SquareConfig): {color: string; area: number} {
+    let newSquare = {color: "white", area: 100};
+    if (config.color) {
+        newSquare.color = config.color;
+    }
+    if (config.width) {
+        newSquare.area = config.width * config.width;
+    }
+    return newSquare;
+}
+let mySquare = createSquare({color: "black"});
+```
+任意のプロパティを持つインターフェースの書き方は、他の言語のインターフェースの書き方に似ています。  
+宣言の中で任意にしたいプロパティの末尾に?の印を付けます。  
+任意のプロパティの利点は、利用できるプロパティを言い表し、  
+インターフェースの一部では無いプロパティが使用されることを防ぐ役割も果たしてくれます。  
+例えば、createSquareのcolorプロパティの名前を打ち間違えたとしても、  
+エラーメッセージがそのことをすぐに知らせてくれます。
+
+```TypeScript
+interface SquareConfig {
+    color?: string;
+    width?: number;
+}
+function createSquare(config: SquareConfig): { color: string; area: number } {
+    let newSquare = {color: "white", area: 100};
+    if (config.color) {
+        // Error: Property 'collor' does not exist on type 'SquareConfig'
+        newSquare.color = config.collor;
+    }
+    if (config.width) {
+        newSquare.area = config.width * config.width;
+    }
+    return newSquare;
+}
+let mySquare = createSquare({color: "black"});
+```
+
+### 3. 読み込み専用プロパティ
+オブジェクトが作成される最初の時には、いくつかのプロパティは編集可(modifiable)のはずです。  
+プロパティ名の前にreadonlyを置くことで、読み込み専用の指定をすることが可能です。
+
+```TypeScript
+interface Point {
+    readonly x: number;
+    readonly y: number;
+}
+```
+
+Pointをオブジェクトリテラルを割り当てて作成することができますが、  
+その割当後にxとyを変更することはできません。
+
+```TypeScript
+let p1: Point = { x: 10, y: 20 };
+p1.x = 5; // error!
+```
+
+TypeScriptのReadonlyArray<T>の型は、 変更処理を行う全てのメソッドが削除されたArray<T>と同義です。  
+そのため、配列の作成後に変更できないことを確認できます。
+
+```TypeScript
+let a: number[] = [1, 2, 3, 4];
+let ro: ReadonlyArray<number> = a;
+ro[0] = 12; // error!
+ro.push(5); // error!
+ro.length = 100; // error!
+a = ro; // error!
+```
+**readonly vs const**  
+readonlyまたはconstのどちらを使用するのかを覚える最も簡単な方法は、 これは変数で使用するのかプロパティで使用するのかを確認することです。 変数であればconstを使用し、プロパティであればreadonlyを使用します。
+
+### 4. Function型
+インターフェースには、JavaScriptオブジェクトがとり得る型の概要を記述することが可能です。  
+プロパティを持つオブジェクトを記述することに加え、 インターフェースは関数の型を記述することも可能です。  
+インターフェースを使用して関数型を記述するために、インターフェースにコールシグネチャを与えます。  
+これはパラメーターの一覧と戻り値の型のみが指定された関数宣言のようなものです。  
+各パラメーターは名前と型の両方を必要とします。
+
+```TYpeScript
+interface SearchFunc {
+    (source: string, subString: string): boolean;
+}
+```
+
+定義すれば、他のインターフェースのようにこの関数型を使用することが可能になります。  
+ここで、関数型の変数をどのように作成し、同じ型の関数の値をどのように適用するのかをお見せします。
+
+```TypeScript
+let mySearch: SearchFunc;
+mySearch = function(source: string, subString: string) {
+    let result = source.search(subString);
+    if (result == -1) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+```
+
+関数型の型のチェックにおいて、パラメーターの名前は一致する必要はありません。  
+例えば、上記の例を下記のように書くことも可能です。
+
+```TypeScript
+let mySearch: SearchFunc;
+mySearch = function(src: string, sub: string): boolean {
+    let result = src.search(sub);
+    if (result == -1) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+```
+
+### 5. Class型
+C#とJavaのような言語での最も一般的なインターフェースの使われ方のひとつに、  
+クラスが明示的に特定の条件を満たすことを強制させるというものがあり、  
+それはTypeScriptでも可能です。
+
+```TypeScript
+interface ClockInterface {
+    currentTime: Date;
+}
+class Clock implements ClockInterface {
+    currentTime: Date;
+    constructor(h: number, m: number) { }
+}
+```
+
+クラスに実装するインターフェース内のメソッドに対しての記述も可能であるため、  
+下記の例ではsetTimeに対してそれを行っています。
+
+```TypeScript
+interface ClockInterface {
+    currentTime: Date;
+    setTime(d: Date);
+}
+class Clock implements ClockInterface {
+    currentTime: Date;
+    setTime(d: Date) {
+        this.currentTime = d;
+    }
+    constructor(h: number, m: number) { }
+}
+```
+
+インターフェースにはクラスのpublic、privateの両方ではなく、publicだけが記述されます。  
+これは、クラスのインスタンスのprivateに、クラスが特定の型を持たせているかチェックすることを禁止します。
+
+### 6. インターフェースの拡張
+クラスのように、インターフェースは拡張することが可能です。   
+これにより、あるインターフェースのメンバを別のものにコピーすることが可能になり、  
+インターフェースを再利用性のある部品へ柔軟に分離できるようにしてくれます。
+
+```TypeScript
+interface Shape {
+    color: string;
+}
+interface Square extends Shape {
+    sideLength: number;
+}
+let square = <Square>{};
+square.color = "blue";
+square.sideLength = 10;
+```
+
+インターフェースは複数のインターフェースを拡張することが可能で、全てのインターフェースを結合したものを作成します。
+
+```TypeScript
+interface Shape {
+    color: string;
+}
+interface PenStroke {
+    penWidth: number;
+}
+interface Square extends Shape, PenStroke {
+    sideLength: number;
+}
+let square = <Square>{};
+square.color = "blue";
+square.sideLength = 10;
+square.penWidth = 5.0;
+```
